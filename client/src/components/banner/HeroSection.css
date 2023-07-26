@@ -9,9 +9,19 @@
 .slogan-container {
   position: absolute;
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   top: 35%;
   left: 80px;
+  width: 40%;
+}
+
+.slogan-title {
+  font-size: 18px;
+  font-weight: 500;
+  word-spacing: 6px;
+  font-weight: 600;
+  color: rgb(83, 83, 83);
 }
 
 .slogan-container .slogan {
@@ -21,18 +31,67 @@
   font-size: 26px;
   word-spacing: 1rem;
   text-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin: 4px 0;
 }
 
-.slogan-container .rent-btn {
+.slogan span {
+  color: var(--secondary-color);
+}
+
+.slogan-description {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(68, 68, 68);
+  text-align: left;
+  line-height: 1.6;
+  margin: 50px 0;
+  width: 90%;
+}
+
+.hero-container .btn-wrapper {
+  display: flex;
+  margin-top: 20px;
+}
+
+.slogan-container .book-btn {
   background-color: var(--secondary-color);
-  font-size: 24px;
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
   border-radius: 12px;
-  padding: 6px 8px;
-  width: 120px;
   color: white;
-  font-weight: 600;
+  width: 120px;
+  height: 50px;
+  padding: 0px 4px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.slogan-container .book-btn p {
+  font-size: 18px;
+  padding: 0px 2px;
+  margin-right: 4px;
+  color: white;
+}
+
+.slogan-container .learn-btn {
+  background-color: var(--primary-color-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: white;
+  width: 120px;
+  height: 50px;
+  padding: 0px 4px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.slogan-container .learn-btn p {
+  font-size: 18px;
+  margin-right: 6px;
+  padding: 0;
+  color: white;
 }
 
 .slogan-container .rent-btn:hover {
