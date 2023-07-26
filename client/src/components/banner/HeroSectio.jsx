@@ -15,20 +15,17 @@ const HeroSectio = () => {
           Rent the car of your dreams. Unbeatable prices, unlimited miles,
           flexible pick-up options and much more.
         </p>
-        <Link to="/rent" className="rent-btn">
-          Book Now
-        </Link>
-        <Link to="/rent" className="rent-btn">
-          Learn More
-          <i class="fa-regular fa-circle-check"></i>
-        </Link>
+        <div className="btn-wrapper">
+          <Link to="/book" className="book-btn">
+            <p>Book Now</p>
+            <i class="fa-regular fa-circle-check"></i>
+          </Link>
+          <Link to="/learn" className="learn-btn">
+            <p>Learn More</p>
+            <i class="fa-solid fa-chevron-right"></i>
+          </Link>
+        </div>
       </div>
-      {/* <div className="slogan-container">
-        <h2 className="slogan">Your Ultimate Travel Companion</h2>
-        <Link to="/rent" className="rent-btn">
-          Rent Now
-        </Link>
-      </div> */}
     </div>
   );
 };
