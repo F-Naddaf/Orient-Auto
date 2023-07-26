@@ -1,0 +1,40 @@
+.hero-container {
+  position: relative;
+}
+
+.hero-container img {
+  width: 100%;
+}
+
+.slogan-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 35%;
+  left: 80px;
+}
+
+.slogan-container .slogan {
+  color: var(--primary-color-dark);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 26px;
+  word-spacing: 1rem;
+  text-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.slogan-container .rent-btn {
+  background-color: var(--secondary-color);
+  font-size: 24px;
+  margin-top: 10px;
+  border-radius: 12px;
+  padding: 6px 8px;
+  width: 120px;
+  color: white;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.slogan-container .rent-btn:hover {
+  background-color: var(--secondary-color-dark);
+}

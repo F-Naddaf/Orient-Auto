@@ -1,0 +1,79 @@
+.nav-container {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+}
+
+.nav-container.sticky {
+  background-color: rgb(0, 0, 0, 0.95);
+}
+
+.logo {
+  margin-left: 40px;
+}
+
+.nav-container .list {
+  display: flex;
+  list-style: none;
+}
+
+.nav-container .list li a {
+  color: #e7e7e7;
+  padding: 0 15px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.nav-container .list li a:hover {
+  color: var(--primary-color);
+}
+
+.nav-container .button-wrapper {
+  margin-right: 40px;
+}
+
+.nav-container .button-wrapper .login-btn {
+  color: var(--primary-color);
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.nav-container .button-wrapper .login-btn:hover {
+  color: var(--secondary-color);
+}
+
+.nav-container .button-wrapper .register-btn {
+  background-color: var(--primary-color);
+  color: #474747;
+  padding: 7px;
+  border-radius: 5px;
+  margin-left: 20px;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.nav-container .button-wrapper .register-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.nav-container .button-wrapper .register-btn-color {
+  background-color: var(--primary-color);
+  color: #000000;
+  padding: 7px;
+  border-radius: 5px;
+  margin-left: 20px;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.nav-container .button-wrapper .register-btn-color:hover {
+  background-color: var(--secondary-color);
+}
