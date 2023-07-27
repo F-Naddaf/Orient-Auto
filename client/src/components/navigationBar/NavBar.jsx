@@ -37,9 +37,7 @@ const NavBar = () => {
   return (
     <div className={`nav-container ${isSticky ? "sticky" : ""}`}>
       <img
-        src={
-          !isSticky ? "../images/newLogo.png" : "../images/newLogoSilver.png"
-        }
+        src={!isSticky ? "../images/logo.png" : "../images/logoSilver.png"}
         className="logo"
         alt="logo"
         height="40"

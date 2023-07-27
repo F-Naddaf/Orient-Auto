@@ -60,6 +60,8 @@
   justify-content: center;
   margin-right: 30px;
   border-radius: 12px;
+  cursor: pointer;
+  border: none;
   color: white;
   width: 120px;
   height: 50px;
@@ -94,6 +96,10 @@
   color: white;
 }
 
-.slogan-container .rent-btn:hover {
+.slogan-container .book-btn:hover {
   background-color: var(--secondary-color-dark);
+}
+
+.slogan-container .learn-btn:hover {
+  background-color: var(--primary-color);
 }

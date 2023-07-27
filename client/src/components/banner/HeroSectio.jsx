@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import "./HeroSection.css";
 
 const HeroSectio = () => {
+  const handleScrollToBooking = () => {
+    const bookingSection = document.getElementById("booking");
+    if (bookingSection) {
+      bookingSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="hero-container">
       <img src="../images/banner.png" alt="banner" />
@@ -16,10 +23,10 @@ const HeroSectio = () => {
           flexible pick-up options and much more.
         </p>
         <div className="btn-wrapper">
-          <Link to="/book" className="book-btn">
+          <button onClick={handleScrollToBooking} className="book-btn">
             <p>Book Now</p>
-            <i class="fa-regular fa-circle-check"></i>
-          </Link>
+            <i className="fa-regular fa-circle-check"></i>
+          </button>
           <Link to="/learn" className="learn-btn">
             <p>Learn More</p>
             <i class="fa-solid fa-chevron-right"></i>
