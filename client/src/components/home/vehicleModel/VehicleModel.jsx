@@ -5,7 +5,7 @@ const VehicleModel = () => {
   return (
     <div className="vehicle-container">
       <div className="vehicle-header">
-        <h5>Our rental fleet</h5>
+        <h5>Our Rental Fleet</h5>
         <h2>Vehicle Models</h2>
         <p>
           Choose from a variety of our amazing vehicles to rent for your next
