@@ -5,14 +5,16 @@ import "./HeroSection.css";
 const HeroSectio = () => {
   const handleScrollToBooking = () => {
     const bookingSection = document.getElementById("booking");
+    const navHeight = 200;
     if (bookingSection) {
-      bookingSection.scrollIntoView({ behavior: "smooth" });
+      const topOffset = bookingSection.getBoundingClientRect().top;
+      window.scrollTo({ top: topOffset - navHeight, behavior: "smooth" });
     }
   };
 
   return (
     <div className="hero-container">
-      <img src="../images/banner.png" alt="banner" />
+      <img src="../images/banner-1.png" alt="banner" />
       <div className="slogan-container">
         <p className="slogan-title">Plan your trip now</p>
         <h3 className="slogan">
