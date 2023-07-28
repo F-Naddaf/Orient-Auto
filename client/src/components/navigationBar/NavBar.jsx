@@ -34,6 +34,8 @@ const NavBar = () => {
     { path: "/contact", label: "Contact" },
   ];
 
+  const activeRoute = navItems.find((item) => item.path === location.pathname);
+
   return (
     <div className={`nav-container ${isSticky ? "sticky" : ""}`}>
       <img
@@ -48,6 +50,7 @@ const NavBar = () => {
             <Link
               to={item.path}
               onClick={item.path === location.pathname ? scrollToTop : null}
+              className={item === activeRoute ? "active" : ""}
             >
               {item.label}
             </Link>
@@ -58,10 +61,8 @@ const NavBar = () => {
         <Link className="login-btn" to="/login">
           Login
         </Link>
-        <Link
-          className={!isSticky ? "register-btn" : "register-btn-color"}
-          to="/register"
-        >
+
+        <Link className="register-btn" to="/register">
           Register
         </Link>
       </div>
