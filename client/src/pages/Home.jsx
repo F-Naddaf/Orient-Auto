@@ -3,6 +3,7 @@ import HeroSectio from "../components/banner/HeroSectio";
 import Booking from "../components/booking/Booking";
 import Plan from "../components/plan/Plan";
 import VehicleModel from "../components/vehicleModel/VehicleModel";
+import WhyUs from "../components/whyUs/WhyUs";
 import "./Home.css";
 
 const Home = () => {
@@ -12,36 +13,7 @@ const Home = () => {
       <Booking />
       <Plan />
       <VehicleModel />
-      <h1>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium
-        consequatur sunt quia praesentium reiciendis consectetur rem illo animi
-        itaque aliquid, tenetur alias obcaecati aspernatur doloremque tempora
-        incidunt adipisci officiis veniam.
-      </h1>
-      <h1>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium
-        consequatur sunt quia praesentium reiciendis consectetur rem illo animi
-        itaque aliquid, tenetur alias obcaecati aspernatur doloremque tempora
-        incidunt adipisci officiis veniam.
-      </h1>
-      <h1>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium
-        consequatur sunt quia praesentium reiciendis consectetur rem illo animi
-        itaque aliquid, tenetur alias obcaecati aspernatur doloremque tempora
-        incidunt adipisci officiis veniam.
-      </h1>
-      <h1>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium
-        consequatur sunt quia praesentium reiciendis consectetur rem illo animi
-        itaque aliquid, tenetur alias obcaecati aspernatur doloremque tempora
-        incidunt adipisci officiis veniam.
-      </h1>
-      <h1>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium
-        consequatur sunt quia praesentium reiciendis consectetur rem illo animi
-        itaque aliquid, tenetur alias obcaecati aspernatur doloremque tempora
-        incidunt adipisci officiis veniam.
-      </h1>
+      <WhyUs />
     </div>
   );
 };

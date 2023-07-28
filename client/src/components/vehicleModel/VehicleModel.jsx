@@ -14,7 +14,7 @@ const VehicleModel = () => {
       </div>
       <section className="vehicle-section">
         <article className="vehicle-name">
-          <ul>
+          <ul className="vehicle-list">
             <li className="car-model">
               Toyota
               <i class="fa-solid fa-chevron-right"></i>
@@ -58,9 +58,9 @@ const VehicleModel = () => {
           </ul>
         </article>
         <article className="vehicle-image">
-          <ul>
-            <li>Car Image</li>
-          </ul>
+          <div className="image-container">
+            <p>Car Image</p>
+          </div>
         </article>
         <article className="vehicle-details">
           <div className="vehicle-rent">
