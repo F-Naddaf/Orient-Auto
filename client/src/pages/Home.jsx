@@ -1,9 +1,10 @@
 import React from "react";
-import HeroSectio from "../components/banner/HeroSectio";
-import Booking from "../components/booking/Booking";
-import Plan from "../components/plan/Plan";
-import VehicleModel from "../components/vehicleModel/VehicleModel";
-import WhyUs from "../components/whyUs/WhyUs";
+import HeroSectio from "../components/home/banner/HeroSectio";
+import Booking from "../components/home/booking/Booking";
+import Plan from "../components/home/plan/Plan";
+import VehicleModel from "../components/home/vehicleModel/VehicleModel";
+import WhyUs from "../components/home/whyUs/WhyUs";
+import FAQ from "../components/home/faq/FAQ";
 import "./Home.css";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <Plan />
       <VehicleModel />
       <WhyUs />
+      <FAQ />
     </div>
   );
 };
