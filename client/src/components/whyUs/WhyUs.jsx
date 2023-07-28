@@ -12,7 +12,9 @@ const WhyUs = () => {
           Top Airports. Local Suppliers. <span>24/7</span> Support.
         </p>
       </div>
-      <img src="../../images/why-us.png" alt="" />
+      <div className="image-container">
+        <img src="../../images/why-us.png" alt="" />
+      </div>
       <div className="description">
         <aside className="aside-left">
           <h3>Why Choose Us</h3>

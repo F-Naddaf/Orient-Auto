@@ -32,6 +32,13 @@
   font-weight: 600;
 }
 
+.why-us-container .image-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
 .why-us-container .description {
   display: flex;
   width: 90%;
