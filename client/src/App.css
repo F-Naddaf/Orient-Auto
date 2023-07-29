@@ -2,9 +2,27 @@
   --primary-color: #35b7f1;
   --primary-color-dark: #0e7cad;
   --nav-color: #002231;
+  --scrollbar: #005174;
   --secondary-color: #ed7000;
   --secondary-color-dark: #bd5900;
   --darker-gray-color: #adadad;
   --dark-gray-color: #cccccb;
   --light-gray-color: #d8d8d8;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar);
+  border-radius: 20px;
 }

@@ -8,7 +8,7 @@ const Booking = () => {
       <form className="booking-selector">
         <div>
           <label className="car-form-label">
-            <i class="fa-solid fa-car"></i>
+            <i className="fa-solid fa-car"></i>
             <p>
               Select Your Car Type <span>*</span>
             </p>
@@ -51,7 +51,7 @@ const Booking = () => {
         </div>
         <div>
           <label className="car-form-label">
-            <i class="fa-solid fa-location-dot"></i>
+            <i className="fa-solid fa-location-dot"></i>
             <p>
               Pick-up <span>*</span>
             </p>
@@ -71,7 +71,7 @@ const Booking = () => {
         </div>
         <div>
           <label className="car-form-label">
-            <i class="fa-solid fa-location-dot"></i>
+            <i className="fa-solid fa-location-dot"></i>
             <p>
               Drop-of <span>*</span>
             </p>
@@ -91,7 +91,7 @@ const Booking = () => {
         </div>
         <div>
           <label className="car-form-label">
-            <i class="fa-regular fa-calendar-days"></i>
+            <i className="fa-regular fa-calendar-days"></i>
             <p>
               Pick-up-date <span>*</span>
             </p>
@@ -100,7 +100,7 @@ const Booking = () => {
         </div>
         <div>
           <label className="car-form-label">
-            <i class="fa-regular fa-calendar-days"></i>
+            <i className="fa-regular fa-calendar-days"></i>
             <p>
               Drop-of-date <span>*</span>
             </p>

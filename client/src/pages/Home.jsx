@@ -5,6 +5,7 @@ import Plan from "../components/home/plan/Plan";
 import VehicleModel from "../components/home/vehicleModel/VehicleModel";
 import WhyUs from "../components/home/whyUs/WhyUs";
 import FAQ from "../components/home/faq/FAQ";
+import Footer from "../components/footer/Footer";
 import "./Home.css";
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       <VehicleModel />
       <WhyUs />
       <FAQ />
+      <Footer />
     </div>
   );
 };

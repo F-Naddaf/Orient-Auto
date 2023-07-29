@@ -1,0 +1,118 @@
+.footer-container {
+  width: 100%;
+  height: 300px;
+  margin-top: 120px;
+  display: grid;
+  gap: 60px;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: rgb(0, 18, 29);
+}
+
+.footer-container aside img {
+  width: 240px;
+}
+
+.footer-container .space {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  padding: 40px;
+}
+
+.footer-container aside {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 40px;
+}
+
+.footer-container .space-company .company {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: fit-content;
+  margin: 0;
+  align-items: flex-start;
+}
+
+.footer-container .space-company {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-container aside h3 {
+  margin: 0;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+.footer-container aside .working-hours {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 15px;
+}
+
+.footer-container aside .working-hours p {
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.footer-container aside a {
+  color: white;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.footer-container aside a:hover {
+  color: var(--secondary-color);
+}
+
+.footer-container aside p {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.footer-container aside .footer-paragraph {
+  margin-bottom: 60px;
+}
+
+.footer-container aside div {
+  display: flex;
+  align-items: center;
+  margin: -20px 0;
+}
+
+.footer-container aside .info p {
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+.footer-container .space .submit {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+
+.footer-container .space .submit input {
+  width: 220px;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.footer-container .space .submit button {
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 220px;
+  padding: 10px;
+  margin-top: 20px;
+  border: none;
+}
