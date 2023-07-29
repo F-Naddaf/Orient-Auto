@@ -1,0 +1,57 @@
+.download-container {
+  display: flex;
+  background-image: url("../../../../public/images/download.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  flex-direction: column;
+  width: 100%;
+  height: 465px;
+  margin-top: 200px;
+}
+
+.download-container .image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.download-container .about-app-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+  width: 35%;
+}
+
+.download-container .about-app-wrapper h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary-color-dark);
+  margin: 0;
+}
+
+.download-container .about-app-wrapper p {
+  font-size: 14px;
+  margin-top: 20px;
+  line-height: 16px;
+  color: rgb(90, 90, 90);
+  line-height: 20px;
+  margin-top: 40px;
+}
+
+.download-container .about-app-wrapper .btns-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 80px;
+}
+
+.download-container .about-app-wrapper .btns-wrapper a {
+  width: 45%;
+}
+
+.download-container .about-app-wrapper .btns-wrapper a img {
+  width: 100%;
+}
