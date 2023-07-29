@@ -31,7 +31,7 @@ const HeroSectio = () => {
           </button>
           <Link to="/learn" className="learn-btn">
             <p>Learn More</p>
-            <i class="fa-solid fa-chevron-right"></i>
+            <i className="fa-solid fa-chevron-right"></i>
           </Link>
         </div>
       </div>
