@@ -33,12 +33,12 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 120px;
-  width: 100%;
+  width: 90%;
   justify-content: space-around;
   margin: 80px 0;
 }
 
-.plan-card-wrapper artical {
+.plan-card-wrapper article {
   width: 100%;
   height: auto;
   display: flex;

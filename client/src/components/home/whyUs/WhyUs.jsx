@@ -31,7 +31,7 @@ const WhyUs = () => {
         <aside className="aside-right">
           <article>
             <div>
-              <img src="../../images/country-drive.png" alt="" />
+              <img src="../../images/icons/country-drive.png" alt="" />
             </div>
             <div>
               <h3>Cross Country Drive</h3>
@@ -43,7 +43,7 @@ const WhyUs = () => {
           </article>
           <article>
             <div>
-              <img src="../../images/included.png" alt="" />
+              <img src="../../images/icons/included.png" alt="" />
             </div>
             <div>
               <h3>All Inclusive Pricing</h3>
@@ -55,7 +55,7 @@ const WhyUs = () => {
           </article>
           <article>
             <div>
-              <img src="../../images/hidden-charges.png" alt="" />
+              <img src="../../images/icons/hidden-charges.png" alt="" />
             </div>
             <div>
               <h3>No Hidden Charges</h3>

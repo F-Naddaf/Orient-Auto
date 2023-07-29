@@ -13,7 +13,7 @@ const Plan = () => {
       </div>
       <div className="plan-card-wrapper">
         <article>
-          <img src="../../images/select-car.png" alt="car" />
+          <img src="../../images/icons/select-car.png" alt="car" />
           <h3>01. Select Car</h3>
           <p>
             We offers a big range of vehicles for all your driving needs. We
@@ -21,7 +21,7 @@ const Plan = () => {
           </p>
         </article>
         <article>
-          <img src="../../images/payment.png" alt="payment" />
+          <img src="../../images/icons/payment.png" alt="payment" />
           <h3>02. Easy payment</h3>
           <p>
             Enjoy hassle-free payment options for your car rental, making the
@@ -29,7 +29,7 @@ const Plan = () => {
           </p>
         </article>
         <article>
-          <img src="../../images/drive.png" alt="drive" />
+          <img src="../../images/icons/drive.png" alt="drive" />
           <h3>03. Make Trip</h3>
           <p>
             Whether you're hitting the open road, we've got you covered with our

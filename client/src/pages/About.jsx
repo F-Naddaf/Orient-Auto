@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Footer from "../components/footer/Footer";
-import "./About.css";
+import "./style/About.css";
 
 const About = () => {
   return (
     <div className="about-container">
       <div className="banner-wrapper">
-        <img src="../images/about-banner.png" alt="banner" />
+        <img src="../images/about/about-banner.png" alt="banner" />
         <h2>About Us</h2>
       </div>
       <div className="about-company">
-        <img src="../images/office.png" alt="banner" />
+        <img src="../images/about/office.png" alt="banner" />
         <section>
           <h2>
             WELCOME <span>TO ORIENT AUTO</span>
@@ -50,10 +49,10 @@ const About = () => {
             <Link to="/">fady-naddaf@hotmail.com</Link>
           </div>
         </section>
-        <img src="../images/communication.png" alt="banner" />
+        <img src="../images/about/communication.png" alt="banner" />
       </div>
       <div className="about-company">
-        <img src="../images/offer.png" alt="banner" />
+        <img src="../images/about/offer.png" alt="banner" />
         <section>
           <h2>EXTENSIVE VEHICLE FLEET</h2>
           <span className="line"></span>
@@ -89,9 +88,8 @@ const About = () => {
           </p>
           <button>request a quote without obligation</button>
         </section>
-        <img src="../images/service.png" alt="banner" />
+        <img src="../images/about/service.png" alt="banner" />
       </div>
-      <Footer />
     </div>
   );
 };

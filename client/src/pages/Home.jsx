@@ -7,7 +7,7 @@ import WhyUs from "../components/home/whyUs/WhyUs";
 import FAQ from "../components/home/faq/FAQ";
 import Footer from "../components/footer/Footer";
 import Download from "../components/home/download/Download";
-import "./Home.css";
+import "./style/Home.css";
 
 const Home = () => {
   return (

@@ -1,0 +1,127 @@
+.team-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.team-container .banner-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.team-container .banner-wrapper h2 {
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+  z-index: 50;
+  margin-left: 80px;
+  margin-bottom: 160px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  word-spacing: 6px;
+}
+
+.team-container .banner-wrapper img {
+  width: 100%;
+  opacity: 0.5;
+  position: absolute;
+  top: -100px;
+  left: 0;
+}
+
+.team-container .team-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 120px;
+}
+
+.team-container .team-section .header {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-items: center;
+  margin: 120px 0 120px 0;
+}
+
+.team-container .team-section .header h3 {
+  font-size: 28px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--primary-color-dark);
+  word-spacing: 8px;
+  margin: 0;
+}
+
+.team-container .team-section .header p {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 16px;
+  color: rgb(90, 90, 90);
+  line-height: 20px;
+}
+
+.team-section .team-wrapper {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px;
+}
+
+.team-section .team-wrapper .team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: rgb(250, 250, 250);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 15px;
+}
+
+.team-section .team-wrapper .team-card .image-container {
+  width: 60%;
+}
+
+.team-section .team-wrapper .team-card .image-container img {
+  width: 100%;
+}
+
+.team-section .team-wrapper .team-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-color-dark);
+  margin-bottom: 0;
+}
+
+.team-section .team-wrapper .team-card h5 {
+  color: rgb(56, 56, 56);
+  margin-top: 10px;
+}
+
+.team-section .team-wrapper .team-card p {
+  font-size: 14px;
+  color: rgb(90, 90, 90);
+  text-align: justify;
+}
+
+.team-container .team-section .partners {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 80%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team-container .team-section .partners img {
+  width: 70%;
+}
