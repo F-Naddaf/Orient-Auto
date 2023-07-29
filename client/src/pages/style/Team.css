@@ -100,18 +100,20 @@
   font-size: 22px;
   font-weight: 700;
   color: var(--primary-color-dark);
-  margin-bottom: 0;
+  margin: 22px 0 0 0;
 }
 
 .team-section .team-wrapper .team-card h5 {
   color: rgb(56, 56, 56);
   margin-top: 10px;
+  margin-bottom: 25px;
 }
 
 .team-section .team-wrapper .team-card p {
   font-size: 14px;
   color: rgb(90, 90, 90);
   text-align: justify;
+  margin: 14px 0;
 }
 
 .team-container .team-section .partners {

@@ -56,9 +56,13 @@
   width: 100px;
 }
 
+.plan-card-wrapper h3 {
+  margin: 20px 0;
+}
+
 .plan-card-wrapper p {
   padding: 0 30px;
-  margin-bottom: 60px;
+  margin: 14px 0 60px 0;
   font-size: 14px;
   color: rgb(90, 90, 90);
 }
