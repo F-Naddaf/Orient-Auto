@@ -71,21 +71,19 @@ const About = () => {
         <section>
           <h2>FULL OPERATIONAL SHORT RENT</h2>
           <span className="line"></span>
-          <p>
+          <div>
+            <h5>It's a popular term in the lease world, we make it happen!</h5>
             <p>
-              <strong>
-                It's a popular term in the lease world, we make it happen!
-              </strong>
+              Each short rent contract offers all the necessary services that
+              you as a motorist need. A 24-hour emergency center, maintenance
+              and repair, replacement transport and{" "}
+              <strong>All-Risk insurance</strong> at a <strong>fixed</strong>{" "}
+              monthly rate. In addition, we offer extra options such as winter
+              tires, navigation or custom solutions. Do you want us to collect
+              the car after the term of the short lease contract? No problem!
+              You can also contact Select Car Lease for repairs and maintenance.
             </p>
-            Each short rent contract offers all the necessary services that you
-            as a motorist need. A 24-hour emergency center, maintenance and
-            repair, replacement transport and{" "}
-            <strong>All-Risk insurance</strong> at a <strong>fixed</strong>{" "}
-            monthly rate. In addition, we offer extra options such as winter
-            tires, navigation or custom solutions. Do you want us to collect the
-            car after the term of the short lease contract? No problem! You can
-            also contact Select Car Lease for repairs and maintenance.
-          </p>
+          </div>
           <button>request a quote without obligation</button>
         </section>
         <img src="../images/about/service.png" alt="banner" />
