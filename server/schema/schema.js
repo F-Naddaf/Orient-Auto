@@ -1,4 +1,6 @@
 import graphql from "graphql";
+import { Car } from "../models/car.js";
+import { Location } from "../models/location.js";
 import _ from "lodash";
 
 const {
@@ -7,44 +9,42 @@ const {
   GraphQLSchema,
   GraphQLID,
   GraphQLInt,
+  GraphQLList,
 } = graphql;
 
-const cars = [
-  {
-    id: "1",
-    type: "Toyota",
-    model: "Camry",
-    year: "2020",
-    available: 4,
-    location: "Utrecht",
-  },
-  {
-    id: "2",
-    type: "VW",
-    model: "ID3",
-    year: "2023",
-    available: 2,
-    location: "Amsterdam",
-  },
-  {
-    id: "3",
-    type: "BMW",
-    model: "i5",
-    year: "2018",
-    available: 3,
-    location: "Zwolle",
-  },
-];
-
-const carType = new GraphQLObjectType({
+const CarType = new GraphQLObjectType({
   name: "Car",
   fields: () => ({
     id: { type: GraphQLID },
-    type: { type: GraphQLString },
     model: { type: GraphQLString },
+    mark: { type: GraphQLString },
     year: { type: GraphQLString },
+    ac: { type: GraphQLString },
+    doors: { type: GraphQLString },
+    transmission: { type: GraphQLString },
+    fuel: { type: GraphQLString },
     available: { type: GraphQLInt },
-    location: { type: GraphQLString },
+    image: { type: GraphQLString },
+    location: { 
+      type: LocationType,
+      resolve(parent, args) {
+        return Car.findById(parent.locationId);
+      },
+    },
+  }),
+});
+
+const LocationType = new GraphQLObjectType({
+  name: "location",
+  fields: () => ({
+    id: { type: GraphQLID },
+    place: { type: GraphQLString },
+    cars: {
+      type: new GraphQLList(CarType),
+      resolve(parent, args) {
+        return Car.find({ locationId: parent.id });
+      },
+    },
   }),
 });
 
@@ -52,10 +52,77 @@ const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
     car: {
-      type: carType,
+      type: CarType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return _.find(cars, { id: args.id });
+        return Car.findById(args.id);
+      },
+    },
+    location: {
+      type: LocationType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Location.findById(args.id);
+      },
+    },
+    cars: {
+      type: new GraphQLList(CarType),
+      resolve(parent, args) {
+        return Car.find({});
+      },
+    },
+    locations: {
+      type: new GraphQLList(LocationType),
+      resolve(parent, args) {
+        return Location.find({});
+      },
+    },
+  },
+});
+
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: {
+    addCar: {
+      type: CarType,
+      args: {
+        model: { type: GraphQLString },
+        mark: { type: GraphQLString },
+        year: { type: GraphQLString },
+        ac: { type: GraphQLString },
+        doors: { type: GraphQLString },
+        transmission: { type: GraphQLString },
+        fuel: { type: GraphQLString },
+        available: { type: GraphQLInt },
+        image: { type: GraphQLString },
+        locationId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        let car = new Car({
+          model: args.model,
+          mark: args.mark,
+          year: args.year,
+          ac: args.ac,
+          doors: args.doors,
+          transmission: args.transmission,
+          fuel: args.fuel,
+          available: args.available,
+          image: args.image,
+          locationId: args.locationId,
+        });
+        return car.save();
+      },
+    },
+    addLocation: {
+      type: LocationType,
+      args: {
+        place: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        let location = new Location({
+          place: args.place,
+        });
+        return location.save();
       },
     },
   },
@@ -63,4 +130,5 @@ const RootQuery = new GraphQLObjectType({
 
 export default new GraphQLSchema({
   query: RootQuery,
+  mutation: Mutation,
 });
