@@ -10,6 +10,7 @@ const {
   GraphQLID,
   GraphQLInt,
   GraphQLList,
+  GraphQLNonNull,
 } = graphql;
 
 const CarType = new GraphQLObjectType({
@@ -25,7 +26,7 @@ const CarType = new GraphQLObjectType({
     fuel: { type: GraphQLString },
     available: { type: GraphQLInt },
     image: { type: GraphQLString },
-    location: { 
+    location: {
       type: LocationType,
       resolve(parent, args) {
         return Car.findById(parent.locationId);
@@ -86,16 +87,16 @@ const Mutation = new GraphQLObjectType({
     addCar: {
       type: CarType,
       args: {
-        model: { type: GraphQLString },
-        mark: { type: GraphQLString },
-        year: { type: GraphQLString },
-        ac: { type: GraphQLString },
-        doors: { type: GraphQLString },
-        transmission: { type: GraphQLString },
-        fuel: { type: GraphQLString },
-        available: { type: GraphQLInt },
-        image: { type: GraphQLString },
-        locationId: { type: GraphQLID },
+        model: { type: new GraphQLNonNull(GraphQLString) },
+        mark: { type: new GraphQLNonNull(GraphQLString) },
+        year: { type: new GraphQLNonNull(GraphQLString) },
+        ac: { type: new GraphQLNonNull(GraphQLString) },
+        doors: { type: new GraphQLNonNull(GraphQLString) },
+        transmission: { type: new GraphQLNonNull(GraphQLString) },
+        fuel: { type: new GraphQLNonNull(GraphQLString) },
+        available: { type: new GraphQLNonNull(GraphQLInt) },
+        image: { type: new GraphQLNonNull(GraphQLString) },
+        locationId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         let car = new Car({
@@ -116,7 +117,7 @@ const Mutation = new GraphQLObjectType({
     addLocation: {
       type: LocationType,
       args: {
-        place: { type: GraphQLString },
+        place: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parent, args) {
         let location = new Location({
