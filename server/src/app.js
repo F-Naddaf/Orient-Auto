@@ -2,10 +2,12 @@ import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-// import cors from "cors";
+import cors from "cors";
 import schema from "../schema/schema.js";
 
 const app = express();
+app.use(cors());
+
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URL);
 
@@ -24,9 +26,7 @@ app.use(
 const port = process.env.PORT;
 
 app.listen(port, () => {
-  console.log("now listening to the port 4000");
+  console.log(`now listening to the port ${port}`);
 });
-
-// app.use(cors());
 
 export default app;

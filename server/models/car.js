@@ -8,9 +8,8 @@ const carSchema = new mongoose.Schema({
   doors: String,
   transmission: String,
   fuel: String,
-  available: Number,
+  price: Number,
   image: String,
-  locationId: String,
 });
 
 export const Car = mongoose.model("Cars", carSchema);

@@ -4,37 +4,6 @@
   justify-content: center;
   align-items: center;
 }
-.team-container .banner-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  position: relative;
-  width: 100%;
-  height: 600px;
-  overflow: hidden;
-  background-size: cover;
-}
-
-.team-container .banner-wrapper h2 {
-  color: white;
-  font-size: 26px;
-  font-weight: 800;
-  z-index: 50;
-  margin-left: 80px;
-  margin-bottom: 160px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  word-spacing: 6px;
-}
-
-.team-container .banner-wrapper img {
-  width: 100%;
-  opacity: 0.5;
-  position: absolute;
-  top: -100px;
-  left: 0;
-}
 
 .team-container .team-section {
   display: flex;
