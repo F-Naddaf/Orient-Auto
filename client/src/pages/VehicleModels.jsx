@@ -73,19 +73,24 @@ const VehicleModels = (props) => {
           <article className="vehicle-card" key={car.id}>
             <img src={car.image} alt={car.mark} />
             <section className="car-info">
-              <aside>
+              <div className="price" id="flag">
+                <h3>€{car.price}</h3>
+                <p>per day</p>
+              </div>
+              <div className="model">
                 <h3>Model: {car.model}</h3>
-                <p>Mark: {car.mark}</p>
-                <p>AC: {car.ac}</p>
-                <p>Doors: {car.doors}</p>
-              </aside>
-              <aside>
-                <h3>
-                  Price: <span>€{car.price}</span> / Day
-                </h3>
-                <p>Year: {car.year}</p>
-                <p>Fuel: {car.fuel}</p>
-              </aside>
+              </div>
+              <div className="car-details">
+                <aside>
+                  <p>Mark: {car.mark}</p>
+                  <p>AC: {car.ac}</p>
+                  <p>Doors: {car.doors}</p>
+                </aside>
+                <aside>
+                  <p>Year: {car.year}</p>
+                  <p>Fuel: {car.fuel}</p>
+                </aside>
+              </div>
             </section>
             <section className="location">
               <h4>Available at:</h4>
