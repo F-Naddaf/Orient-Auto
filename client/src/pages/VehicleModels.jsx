@@ -6,13 +6,16 @@ import Banner from "../components/banner/Banner";
 
 const getVehicleQuery = gql`
   {
-    locations {
-      place
-      cars {
-        model
-        mark
-        image
-      }
+    cars {
+      id
+      model
+      mark
+      price
+      image
+      year
+      ac
+      doors
+      fuel
     }
   }
 `;
@@ -41,10 +44,21 @@ const VehicleModels = (props) => {
           {cars?.map((car) => (
             <article className="vehicle-card" key={car.id}>
               <img src={car.image} alt={car.mark} />
-              <div>
-                <h3>Model: {car.model}</h3>
-                <h3>Mark: {car.mark}</h3>
-              </div>
+              <section className="car-info">
+                <aside>
+                  <h3>Model: {car.model}</h3>
+                  <p>Mark: {car.mark}</p>
+                  <p>AC: {car.ac}</p>
+                  <p>Doors: {car.doors}</p>
+                </aside>
+                <aside>
+                  <h3>
+                    Price: <span>€{car.price}</span> / Day
+                  </h3>
+                  <p>Year: {car.year}</p>
+                  <p>Fuel: {car.fuel}</p>
+                </aside>
+              </section>
             </article>
           ))}
         </div>
