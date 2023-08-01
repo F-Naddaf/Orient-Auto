@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import ApolloClient from "apollo-boost";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "react-apollo";
 import "./App.css";
 import NavBar from "./components/navigationBar/NavBar";
@@ -13,6 +13,7 @@ import VehicleModels from "./pages/VehicleModels";
 
 const client = new ApolloClient({
   uri: "http://localhost:4880/graphql",
+  cache: new InMemoryCache(),
   // uri: process.env.URI,
 });
 

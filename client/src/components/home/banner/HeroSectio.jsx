@@ -29,7 +29,7 @@ const HeroSectio = () => {
             <p>Book Now</p>
             <i className="fa-regular fa-circle-check"></i>
           </button>
-          <Link to="/learn" className="learn-btn">
+          <Link to="/about" className="learn-btn">
             <p>Learn More</p>
             <i className="fa-solid fa-chevron-right"></i>
           </Link>
