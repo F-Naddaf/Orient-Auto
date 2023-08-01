@@ -13,6 +13,20 @@ const {
   GraphQLInputObjectType,
 } = graphql;
 
+const CarCategoryType = new GraphQLObjectType({
+  name: "CarCategory",
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    cars: {
+      type: new GraphQLList(CarType),
+      resolve(parent, args) {
+        return Car.find({ model: parent.name });
+      },
+    },
+  }),
+});
+
 const CarType = new GraphQLObjectType({
   name: "Car",
   fields: () => ({
@@ -31,6 +45,12 @@ const CarType = new GraphQLObjectType({
       async resolve(parent, args) {
         const car = await Car.findById(parent.id);
         return car ? car.available : null;
+      },
+    },
+    category: {
+      type: CarCategoryType,
+      resolve(parent, args) {
+        return { id: parent.model.toLowerCase(), name: parent.model };
       },
     },
   }),
@@ -67,7 +87,6 @@ const RootQuery = new GraphQLObjectType({
       type: CarType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        // return _.find(Cars, { id: args.id });
         return Car.findById(args.id);
       },
     },
@@ -75,8 +94,20 @@ const RootQuery = new GraphQLObjectType({
       type: CarLocationType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        // return _.find(Locations, { id: args.id });
         return Location.findById(args.id);
+      },
+    },
+    carCategories: {
+      type: new GraphQLList(CarCategoryType),
+      resolve(parent, args) {
+        return Car.aggregate([
+          {
+            $group: {
+              _id: "$model",
+              name: { $first: "$model" },
+            },
+          },
+        ]);
       },
     },
     cars: {
