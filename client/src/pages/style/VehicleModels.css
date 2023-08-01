@@ -8,11 +8,15 @@
 }
 
 .vehicles-container .vehicle-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 20px;
+  /* border-top-right-radius: 60px;
+  border-bottom-left-radius: 60px; */
+  border-top-left-radius: 60px;
+  border-bottom-right-radius: 60px;
   background-color: white;
   padding: 20px;
 }
@@ -23,10 +27,66 @@
 
 .vehicles-container .vehicle-card .car-info {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   padding: 5px;
+}
+
+.vehicles-container .vehicle-card .car-info .model {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--primary-color-dark);
+}
+
+.vehicles-container .vehicle-card .car-info .car-details {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.vehicles-container .vehicle-card .car-info .price {
+  position: absolute;
+  /* top: 0;
+  right: 0; */
+  top: -8px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* width: 60px;
+  height: 60px;
+  border-top-right-radius: 70%;
+  border-bottom-left-radius: 70%;
+  background: var(--secondary-color); */
+}
+
+#flag {
+  width: 50px;
+  height: 80px;
+  box-sizing: content-box;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: var(--secondary-color);
+  color: white;
+  text-align: center;
+}
+#flag:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 13px solid white;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
 }
 
 .vehicles-container .vehicle-card aside {
@@ -37,10 +97,17 @@
   width: fit-content;
 }
 
-.vehicles-container .vehicle-card aside h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: var(--primary-color-dark);
+.vehicles-container .vehicle-card .price h3 {
+  font-size: 20px;
+  color: rgb(240, 240, 240);
+  padding-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.vehicles-container .vehicle-card .price p {
+  font-size: 14px;
+  color: rgb(240, 240, 240);
+  letter-spacing: 0.7px;
 }
 
 .vehicles-container .vehicle-card aside h3 span {
