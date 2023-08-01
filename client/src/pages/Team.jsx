@@ -1,5 +1,6 @@
 import React from "react";
 import "./style/Team.css";
+import Banner from "../components/banner/Banner";
 
 const Team = () => {
   const teams = [
@@ -48,10 +49,7 @@ const Team = () => {
   ];
   return (
     <div className="team-container">
-      <div className="banner-wrapper">
-        <img src="../images/about/about-banner.png" alt="banner" />
-        <h2>Our Team</h2>
-      </div>
+      <Banner title="Our Team" />
       <div className="team-section">
         <section className="header">
           <h3>Our Leaders</h3>

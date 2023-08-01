@@ -1,7 +1,6 @@
 import graphql from "graphql";
 import { Car } from "../models/car.js";
 import { Location } from "../models/location.js";
-import _ from "lodash";
 
 const {
   GraphQLObjectType,
@@ -11,6 +10,7 @@ const {
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
+  GraphQLInputObjectType,
 } = graphql;
 
 const CarType = new GraphQLObjectType({
@@ -24,28 +24,39 @@ const CarType = new GraphQLObjectType({
     doors: { type: GraphQLString },
     transmission: { type: GraphQLString },
     fuel: { type: GraphQLString },
-    available: { type: GraphQLInt },
+    price: { type: GraphQLInt },
     image: { type: GraphQLString },
-    location: {
-      type: LocationType,
-      resolve(parent, args) {
-        return Car.findById(parent.locationId);
+    available: {
+      type: GraphQLInt,
+      async resolve(parent, args) {
+        const car = await Car.findById(parent.id);
+        return car ? car.available : null;
       },
     },
   }),
 });
 
-const LocationType = new GraphQLObjectType({
-  name: "location",
+const CarLocationType = new GraphQLObjectType({
+  name: "CarLocation",
   fields: () => ({
-    id: { type: GraphQLID },
     place: { type: GraphQLString },
     cars: {
-      type: new GraphQLList(CarType),
+      type: new GraphQLList(AvailableType),
       resolve(parent, args) {
-        return Car.find({ locationId: parent.id });
+        return parent.cars.map((car) => ({
+          car: Car.findById(car.id),
+          available: car.available,
+        }));
       },
     },
+  }),
+});
+
+const AvailableType = new GraphQLObjectType({
+  name: "AvailableType",
+  fields: () => ({
+    car: { type: CarType },
+    available: { type: GraphQLInt },
   }),
 });
 
@@ -56,13 +67,15 @@ const RootQuery = new GraphQLObjectType({
       type: CarType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
+        // return _.find(Cars, { id: args.id });
         return Car.findById(args.id);
       },
     },
     location: {
-      type: LocationType,
+      type: CarLocationType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
+        // return _.find(Locations, { id: args.id });
         return Location.findById(args.id);
       },
     },
@@ -73,7 +86,7 @@ const RootQuery = new GraphQLObjectType({
       },
     },
     locations: {
-      type: new GraphQLList(LocationType),
+      type: new GraphQLList(CarLocationType),
       resolve(parent, args) {
         return Location.find({});
       },
@@ -94,9 +107,8 @@ const Mutation = new GraphQLObjectType({
         doors: { type: new GraphQLNonNull(GraphQLString) },
         transmission: { type: new GraphQLNonNull(GraphQLString) },
         fuel: { type: new GraphQLNonNull(GraphQLString) },
-        available: { type: new GraphQLNonNull(GraphQLInt) },
+        price: { type: new GraphQLNonNull(GraphQLInt) },
         image: { type: new GraphQLNonNull(GraphQLString) },
-        locationId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         let car = new Car({
@@ -107,23 +119,47 @@ const Mutation = new GraphQLObjectType({
           doors: args.doors,
           transmission: args.transmission,
           fuel: args.fuel,
-          available: args.available,
+          price: args.price,
           image: args.image,
-          locationId: args.locationId,
         });
         return car.save();
       },
     },
     addLocation: {
-      type: LocationType,
+      type: CarLocationType,
       args: {
         place: { type: new GraphQLNonNull(GraphQLString) },
+        cars: {
+          type: new GraphQLList(
+            new GraphQLInputObjectType({
+              name: "CarLocationInput",
+              fields: () => ({
+                carId: { type: new GraphQLNonNull(GraphQLID) },
+                available: { type: new GraphQLNonNull(GraphQLInt) },
+              }),
+            })
+          ),
+        },
       },
-      resolve(parent, args) {
-        let location = new Location({
-          place: args.place,
-        });
-        return location.save();
+      async resolve(parent, args) {
+        const location = new Location({ place: args.place });
+        try {
+          const savedLocation = await location.save();
+          for (const carInput of args.cars) {
+            const car = await Car.findById(carInput.carId);
+            if (!car) {
+              throw new Error(`Car with ID ${carInput.carId} not found.`);
+            }
+            savedLocation.cars.push({
+              id: car._id,
+              available: carInput.available,
+            });
+          }
+          await savedLocation.save();
+          return savedLocation;
+        } catch (error) {
+          throw new Error("Failed to create location: " + error.message);
+        }
       },
     },
   },
