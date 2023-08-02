@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
+import Vautour from "../../../components/vautour/Vautour";
 import "./Booking.css";
 
 const getLocationQuery = gql`
@@ -36,6 +37,7 @@ const Booking = (props) => {
   const [categories, setCategories] = useState([]);
   const [locations, setLocations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showVautour, setShowVautour] = useState(false);
 
   useEffect(() => {
     if (props.vehicleData.loading || props.locationData.loading) {
@@ -58,103 +60,118 @@ const Booking = (props) => {
     setSelectedCarId(event.target.value);
   };
 
+  const handleReserveNow = (e) => {
+    e.preventDefault();
+    setShowVautour(true);
+    e.stopPropagation();
+  };
+
+  const handleCloseVautour = () => {
+    setShowVautour(false);
+  };
+
   return (
-    <div className="booking-conatiner" id="booking">
-      <h1>Book a car</h1>
-      <form className="booking-selector">
-        <div>
-          <label className="car-form-label">
-            <i className="fa-solid fa-car"></i>
-            <p>
-              Select Your Car Type <span>*</span>
-            </p>
-          </label>
-          <section className="select-conatiner">
-            {isLoading ? (
-              <p>Loading...</p>
-            ) : (
-              <select
-                name="cars"
-                id="cars"
-                onChange={handleCarChange}
-                value={selectedCarId}
-              >
-                <option value="">&#160; &#160; &#160; Select car type</option>
-                {categories.map((category, index) => (
-                  <optgroup label={category.name} key={index}>
-                    {category.cars.map((car) => (
-                      <option value={car.id} key={car.id}>
-                        {car.mark}
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
+    <div className="booking-wrapper">
+      <div className="booking-conatiner" id="booking">
+        <h1>Book a car</h1>
+        <form className="booking-selector">
+          <div>
+            <label className="car-form-label">
+              <i className="fa-solid fa-car"></i>
+              <p>
+                Select Your Car Type <span>*</span>
+              </p>
+            </label>
+            <section className="select-conatiner">
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <select
+                  name="cars"
+                  id="cars"
+                  onChange={handleCarChange}
+                  value={selectedCarId}
+                >
+                  <option value="">&#160; &#160; &#160; Select car type</option>
+                  {categories.map((category, index) => (
+                    <optgroup label={category.name} key={index}>
+                      {category.cars.map((car) => (
+                        <option value={car.id} key={car.id}>
+                          {car.mark}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ))}
+                </select>
+              )}
+            </section>
+          </div>
+          <div>
+            <label className="car-form-label">
+              <i className="fa-solid fa-location-dot"></i>
+              <p>
+                Pick-up <span>*</span>
+              </p>
+            </label>
+            <section className="select-conatiner">
+              <select name="drop-of">
+                <option value="select">
+                  &#160; &#160; &#160; Select pick up location
+                </option>
+                {locations &&
+                  locations.map((location, index) => (
+                    <option value={location} key={index}>
+                      &#160; {location}
+                    </option>
+                  ))}
               </select>
-            )}
-          </section>
-        </div>
-        <div>
-          <label className="car-form-label">
-            <i className="fa-solid fa-location-dot"></i>
-            <p>
-              Pick-up <span>*</span>
-            </p>
-          </label>
-          <section className="select-conatiner">
-            <select name="drop-of">
-              <option value="select">
-                &#160; &#160; &#160; Select pick up location
-              </option>
-              {locations &&
-                locations.map((location, index) => (
-                  <option value={location} key={index}>
-                    &#160; {location}
-                  </option>
-                ))}
-            </select>
-          </section>
-        </div>
-        <div>
-          <label className="car-form-label">
-            <i className="fa-solid fa-location-dot"></i>
-            <p>
-              Drop-of <span>*</span>
-            </p>
-          </label>
-          <section className="select-conatiner">
-            <select name="drop-of">
-              <option value="select">
-                &#160; &#160; &#160; Select pick up location
-              </option>
-              {locations &&
-                locations.map((location, index) => (
-                  <option value={location} key={index}>
-                    &#160; {location}
-                  </option>
-                ))}
-            </select>
-          </section>
-        </div>
-        <div>
-          <label className="car-form-label">
-            <i className="fa-regular fa-calendar-days"></i>
-            <p>
-              Pick-up-date <span>*</span>
-            </p>
-          </label>
-          <input className="select-date" type="date" />
-        </div>
-        <div>
-          <label className="car-form-label">
-            <i className="fa-regular fa-calendar-days"></i>
-            <p>
-              Drop-of-date <span>*</span>
-            </p>
-          </label>
-          <input className="select-date" type="date" />
-        </div>
-        <button className="reserve-btn">Reserve Now</button>
-      </form>
+            </section>
+          </div>
+          <div>
+            <label className="car-form-label">
+              <i className="fa-solid fa-location-dot"></i>
+              <p>
+                Drop-of <span>*</span>
+              </p>
+            </label>
+            <section className="select-conatiner">
+              <select name="drop-of">
+                <option value="select">
+                  &#160; &#160; &#160; Select pick up location
+                </option>
+                {locations &&
+                  locations.map((location, index) => (
+                    <option value={location} key={index}>
+                      &#160; {location}
+                    </option>
+                  ))}
+              </select>
+            </section>
+          </div>
+          <div>
+            <label className="car-form-label">
+              <i className="fa-regular fa-calendar-days"></i>
+              <p>
+                Pick-up-date <span>*</span>
+              </p>
+            </label>
+            <input className="select-date" type="date" />
+          </div>
+          <div>
+            <label className="car-form-label">
+              <i className="fa-regular fa-calendar-days"></i>
+              <p>
+                Drop-of-date <span>*</span>
+              </p>
+            </label>
+            <input className="select-date" type="date" />
+          </div>
+          <button className="reserve-btn" onClick={handleReserveNow}>
+            Reserve Now
+          </button>
+        </form>
+        {showVautour && <Vautour onClose={handleCloseVautour} />}
+      </div>
     </div>
   );
 };
