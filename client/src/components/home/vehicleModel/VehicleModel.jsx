@@ -26,7 +26,7 @@ const getVehicleQuery = gql`
 const VehicleModel = (props) => {
   const [categories, setCategories] = useState([]);
   const [selectedCar, setSelectedCar] = useState(null);
-  // const [desplayedImage, setDesplayedImage] = useState("");
+  const [desplayedCar, setDesplayedCar] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const handleCarMarkClick = (car) => {
@@ -34,16 +34,15 @@ const VehicleModel = (props) => {
   };
 
   useEffect(() => {
-    if (props.loading) {
+    if (props.data.loading) {
       setIsLoading(true);
     } else {
       setIsLoading(false);
       setCategories(props.data.carCategories);
-      // setDesplayedImage(props.data.carCategories[0]?.cars[0]?.image);
+      setDesplayedCar(props.data?.carCategories[0]?.cars[0]);
     }
   }, [props.data]);
 
-  // console.log("displayed car", desplayedImage);
   return (
     <div className="vehicle-container">
       <div className="vehicle-header">
@@ -85,43 +84,51 @@ const VehicleModel = (props) => {
         )}
         <article className="vehicle-image">
           <div className="image-container">
-            {selectedCar && <img src={selectedCar.image} alt="car image" />}
+            {selectedCar && selectedCar ? (
+              <img src={selectedCar.image} alt={selectedCar.mark} />
+            ) : (
+              <img src={desplayedCar.image} alt={desplayedCar.mark} />
+            )}
           </div>
         </article>
         <article className="vehicle-details">
           <div className="vehicle-rent">
-            <h2>€{selectedCar?.price}</h2>
+            <h2>€{selectedCar ? selectedCar?.price : desplayedCar?.price}</h2>
             <h3>Rent / day</h3>
           </div>
           <table>
             <tbody>
               <tr>
                 <td>Model</td>
-                <td>{selectedCar?.model}</td>
+                <td>{selectedCar ? selectedCar.model : desplayedCar?.model}</td>
               </tr>
               <tr>
                 <td>Mark</td>
-                <td>{selectedCar?.mark}</td>
+                <td>{selectedCar ? selectedCar.mark : desplayedCar?.mark}</td>
               </tr>
               <tr>
                 <td>Year</td>
-                <td>{selectedCar?.year}</td>
+                <td>{selectedCar ? selectedCar.year : desplayedCar?.year}</td>
               </tr>
               <tr>
                 <td>Doors</td>
-                <td>{selectedCar?.doors}</td>
+                <td>{selectedCar ? selectedCar.doors : desplayedCar?.doors}</td>
               </tr>
               <tr>
                 <td>AC</td>
-                <td>{selectedCar?.ac}</td>
+                <td>{selectedCar ? selectedCar.ac : desplayedCar?.ac}</td>
               </tr>
               <tr>
                 <td>Transmission</td>
-                <td>{selectedCar?.transmission}</td>
+                <td>
+                  {selectedCar
+                    ? selectedCar.transmission
+                    : desplayedCar?.transmission}
+                </td>
               </tr>
               <tr>
                 <td>Fuel</td>
-                <td>{selectedCar?.fuel}</td>
+                <td>{selectedCar ? selectedCar.fuel : desplayedCar?.fuel}</td>
               </tr>
             </tbody>
           </table>

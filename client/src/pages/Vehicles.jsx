@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
-import "./style/VehicleModels.css";
+import "./style/Vehicles.css";
 import Banner from "../components/banner/Banner";
 
 const getLocationQuery = gql`
@@ -68,37 +68,41 @@ const VehicleModels = (props) => {
   return (
     <div>
       <Banner title="Vehicle Models" />
-      <div className="vehicles-container">
-        {carWithAvailableLocations?.map((car) => (
-          <article className="vehicle-card" key={car.id}>
-            <img src={car.image} alt={car.mark} />
-            <section className="car-info">
-              <div className="price" id="flag">
-                <h3>€{car.price}</h3>
-                <p>per day</p>
-              </div>
-              <div className="model">
-                <h3>Model: {car.model}</h3>
-              </div>
-              <div className="car-details">
-                <aside>
-                  <p>Mark: {car.mark}</p>
-                  <p>AC: {car.ac}</p>
-                  <p>Doors: {car.doors}</p>
-                </aside>
-                <aside>
-                  <p>Year: {car.year}</p>
-                  <p>Fuel: {car.fuel}</p>
-                </aside>
-              </div>
-            </section>
-            <section className="location">
-              <h4>Available at:</h4>
-              <p>{car.location}</p>
-            </section>
-          </article>
-        ))}
-      </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="vehicles-container">
+          {carWithAvailableLocations?.map((car) => (
+            <article className="vehicle-card" key={car.id}>
+              <img src={car.image} alt={car.mark} />
+              <section className="car-info">
+                <div className="price" id="flag">
+                  <h3>€{car.price}</h3>
+                  <p>per day</p>
+                </div>
+                <div className="model">
+                  <h3>Model: {car.model}</h3>
+                </div>
+                <div className="car-details">
+                  <aside>
+                    <p>Mark: {car.mark}</p>
+                    <p>AC: {car.ac}</p>
+                    <p>Doors: {car.doors}</p>
+                  </aside>
+                  <aside>
+                    <p>Year: {car.year}</p>
+                    <p>Fuel: {car.fuel}</p>
+                  </aside>
+                </div>
+              </section>
+              <section className="location">
+                <h4>Available at:</h4>
+                <p>{car.location}</p>
+              </section>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
