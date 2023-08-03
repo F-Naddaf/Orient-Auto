@@ -1,0 +1,262 @@
+.vautour-cantainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -80px;
+  left: 0;
+}
+
+.vautour-wrapper {
+  width: 85%;
+  height: auto;
+  position: relative;
+  margin: auto;
+  background-color: #ffffff;
+  border: 1px solid rgb(168, 168, 168);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.vautour-wrapper header {
+  height: 40px;
+  background-color: var(--secondary-color);
+  /* background-color: #00405c; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  color: white;
+}
+
+.vautour-wrapper header h2 {
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 1px;
+  word-spacing: 6px;
+}
+
+.vautour-wrapper header button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  /* color: var(--nav-color); */
+  color: var(--secondary-color);
+  border-radius: 50%;
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.vautour-cantainer .vautour-wrapper .about-reservation {
+  background-color: rgba(237, 112, 0, 0.2);
+  /* background-color: rgba(14, 124, 173, 0.2); */
+  padding: 15px 0;
+}
+
+.vautour-wrapper .about-reservation div:first-child {
+  display: flex;
+  align-items: center;
+  color: var(--secondary-color);
+  /* color: var(--primary-color-dark); */
+  padding-left: 10px;
+  padding-bottom: 15px;
+}
+
+.vautour-wrapper .about-reservation div:first-child h3 {
+  font-weight: 500;
+  padding-left: 10px;
+}
+
+.vautour-wrapper .about-reservation div p {
+  padding-left: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgb(90, 90, 90);
+}
+
+.vautour-wrapper .reservation-details {
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: space-around;
+  margin: 40px 0 20px 0;
+}
+
+.vautour-wrapper .reservation-details aside {
+  width: 45%;
+}
+
+.vautour-wrapper .reservation-details .vehicle-type-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.vautour-wrapper .reservation-details .vehicle-type-wrapper div {
+  display: flex;
+}
+
+.vautour-wrapper .reservation-details .vehicle-type-wrapper img {
+  width: 85%;
+}
+
+.vehicle-type-wrapper .vehicle-type {
+  font-size: 20px;
+  margin-left: 10px;
+  color: var(--primary-color-dark);
+}
+
+.vautour-wrapper .reservation-details h5 {
+  /* .vautour-wrapper .reservation-details h5:first-child { */
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: var(--secondary-color);
+  /* color: #002b3d; */
+}
+
+.vautour-wrapper .reservation-details h6 {
+  font-size: 20px;
+  margin-bottom: 30px;
+  /* color: var(--secondary-color); */
+  color: #002b3d;
+}
+
+.vautour-wrapper .reservation-details .vehicle-type h5 span {
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: var(--secondary-color);
+  /* color: var(--primary-color-dark); */
+}
+
+.vautour-wrapper .reservation-details span {
+  display: flex;
+  align-items: center;
+}
+
+.vautour-wrapper .reservation-details .input-time {
+  width: fit-content;
+  height: 25px;
+  margin-left: 10px;
+}
+
+.reservation-details .reserve-info {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.reservation-details .reserve-info div {
+  display: flex;
+  margin: 6px 0;
+  /* color: var(--primary-color-dark); */
+}
+
+.reservation-details .reserve-info h6 {
+  font-size: 15px;
+  margin-left: 10px;
+  color: #002b3d;
+  margin-bottom: 0;
+}
+
+.reservation-details .reserve-info i {
+  color: #002b3d;
+}
+
+.reservation-details .reserve-info p {
+  font-size: 14px;
+  margin: 5px 0;
+  /* color: var(--secondary-color); */
+  color: var(--primary-color-dark);
+}
+
+.vautour-wrapper .line {
+  width: 90%;
+  height: 1px;
+  background-color: rgb(177, 177, 177);
+  margin: auto;
+}
+
+.vautour-wrapper section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.vautour-wrapper section form h5 {
+  font-size: 20px;
+  margin: 30px;
+  /* color: var(--secondary-color); */
+  color: #002b3d;
+  text-transform: uppercase;
+}
+
+.vautour-wrapper section form .vautour-user-info {
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 90%;
+  justify-items: end;
+}
+.vautour-wrapper section form label {
+  color: #002b3d;
+  font-size: 16px;
+  font-weight: 500;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.vautour-wrapper section form label p {
+  color: #002b3d;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.vautour-wrapper section form label span {
+  color: var(--secondary-color);
+}
+
+.vautour-wrapper section form label input {
+  margin-top: 6px;
+  font-size: 14px;
+  padding: 6px;
+}
+
+.vautour-wrapper section form .checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  width: 82%;
+  margin: 8px auto 30px auto;
+}
+
+.vautour-wrapper section form .checkbox-wrapper input,
+.vautour-wrapper section form .checkbox-wrapper label {
+  width: fit-content;
+  margin-bottom: 0;
+}
+
+.vautour-wrapper section form .checkbox-wrapper label {
+  font-size: 14px;
+}
+
+.vautour-wrapper section form .checkbox-wrapper input {
+  margin-right: 8px;
+}
+
+.vautour-wrapper section form .form-reserve-btn {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 40px;
+  width: 90%;
+}
+
+.vautour-wrapper section form .form-reserve-btn .btn-reserve {
+  border: none;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 30px;
+  cursor: pointer;
+}

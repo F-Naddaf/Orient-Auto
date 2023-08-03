@@ -1,3 +1,8 @@
+.booking-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .booking-conatiner {
   display: flex;
   flex-direction: column;
@@ -17,6 +22,18 @@
 .booking-conatiner h1 {
   color: var(--primary-color-dark);
   margin: 0 0 40px 0;
+}
+
+.booking-conatiner .message {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.booking-conatiner .message p {
+  font-size: 14px;
+  color: red;
 }
 
 .booking-selector {
@@ -88,4 +105,16 @@
   font-size: 16px;
   font-weight: 600;
   color: white;
+  cursor: pointer;
+}
+
+.booking-conatiner .disabled {
+  height: 40px;
+  width: 100%;
+  background-color: rgb(168, 168, 168);
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
 }
