@@ -36,10 +36,13 @@ const Booking = (props) => {
   const [selectedCarId, setSelectedCarId] = useState("");
   const [selectedPickUpLocation, setSelectedPickUpLocation] = useState("");
   const [selectedDropOfLocation, setSelectedDropOfLocation] = useState("");
+  const [selectedPickDate, setSelectedPickDate] = useState("");
+  const [selectedDropDate, setSelectedDropDate] = useState("");
   const [categories, setCategories] = useState([]);
   const [locations, setLocations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showVautour, setShowVautour] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     if (props.vehicleData.loading || props.locationData.loading) {
@@ -65,13 +68,30 @@ const Booking = (props) => {
   const handleReserveNow = (e) => {
     e.preventDefault();
 
-    const selectedCarIdFromEvent = e.target.form.cars.value;
-    const selectedPickUpFromEvent = e.target.form.pickUp.value;
-    const selectedDropOfFromEvent = e.target.form.dropOf.value;
+    const form = e.target.form;
+    if (!form.checkValidity()) {
+      form.cars.value = "";
+      form.pickUp.value = "";
+      form.dropOf.value = "";
+      form.pickDate.value = "";
+      form.dropDate.value = "";
+      setShowMessage(true);
+      return;
+    } else {
+      setShowMessage(false);
+    }
+
+    const selectedCarIdFromEvent = form.cars.value;
+    const selectedPickUpFromEvent = form.pickUp.value;
+    const selectedDropOfFromEvent = form.dropOf.value;
+    const selectedPickDateFormEvent = form.pickDate.value;
+    const selectedDropDateFormEvent = form.dropDate.value;
 
     setSelectedCarId(selectedCarIdFromEvent);
     setSelectedPickUpLocation(selectedPickUpFromEvent);
     setSelectedDropOfLocation(selectedDropOfFromEvent);
+    setSelectedPickDate(selectedPickDateFormEvent);
+    setSelectedDropDate(selectedDropDateFormEvent);
 
     setShowVautour(true);
     e.stopPropagation();
@@ -85,6 +105,11 @@ const Booking = (props) => {
     <div className="booking-wrapper">
       <div className="booking-conatiner" id="booking">
         <h1>Book a car</h1>
+        {showMessage && (
+          <div className="message">
+            <p>Please fill up the requirement feilds...</p>
+          </div>
+        )}
         <form className="booking-selector">
           <div>
             <label className="car-form-label">
@@ -125,7 +150,7 @@ const Booking = (props) => {
               </p>
             </label>
             <section className="select-conatiner">
-              <select name="pickUp">
+              <select name="pickUp" required>
                 <option value="select">
                   &#160; &#160; &#160; Select pick up location
                 </option>
@@ -146,7 +171,7 @@ const Booking = (props) => {
               </p>
             </label>
             <section className="select-conatiner">
-              <select name="dropOf">
+              <select name="dropOf" required>
                 <option value="select">
                   &#160; &#160; &#160; Select pick up location
                 </option>
@@ -166,7 +191,12 @@ const Booking = (props) => {
                 Pick-up-date <span>*</span>
               </p>
             </label>
-            <input className="select-date" type="date" />
+            <input
+              className="select-date"
+              name="pickDate"
+              type="date"
+              required
+            />
           </div>
           <div>
             <label className="car-form-label">
@@ -175,7 +205,12 @@ const Booking = (props) => {
                 Drop-of-date <span>*</span>
               </p>
             </label>
-            <input className="select-date" type="date" />
+            <input
+              className="select-date"
+              name="dropDate"
+              type="date"
+              required
+            />
           </div>
           <button className="reserve-btn" onClick={handleReserveNow}>
             Reserve Now
@@ -187,6 +222,8 @@ const Booking = (props) => {
             selectedCarId={selectedCarId}
             selectedPickUpLocation={selectedPickUpLocation}
             selectedDropOfLocation={selectedDropOfLocation}
+            selectedPickDate={selectedPickDate}
+            selectedDropDate={selectedDropDate}
           />
         )}
       </div>

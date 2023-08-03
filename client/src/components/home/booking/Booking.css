@@ -24,6 +24,18 @@
   margin: 0 0 40px 0;
 }
 
+.booking-conatiner .message {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.booking-conatiner .message p {
+  font-size: 14px;
+  color: red;
+}
+
 .booking-selector {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -89,6 +101,17 @@
   height: 40px;
   width: 100%;
   background-color: var(--primary-color-dark);
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+.booking-conatiner .disabled {
+  height: 40px;
+  width: 100%;
+  background-color: rgb(168, 168, 168);
   border: none;
   font-size: 16px;
   font-weight: 600;

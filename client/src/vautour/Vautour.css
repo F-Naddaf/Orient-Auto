@@ -91,6 +91,15 @@
 
 .vautour-wrapper .reservation-details .vehicle-type-wrapper {
   display: flex;
+  flex-direction: column;
+}
+
+.vautour-wrapper .reservation-details .vehicle-type-wrapper div {
+  display: flex;
+}
+
+.vautour-wrapper .reservation-details .vehicle-type-wrapper img {
+  width: 85%;
 }
 
 .vehicle-type-wrapper .vehicle-type {
@@ -100,7 +109,7 @@
 }
 
 .vautour-wrapper .reservation-details h5 {
-/* .vautour-wrapper .reservation-details h5:first-child { */
+  /* .vautour-wrapper .reservation-details h5:first-child { */
   font-size: 20px;
   margin-bottom: 30px;
   color: var(--secondary-color);
@@ -148,6 +157,7 @@
   font-size: 15px;
   margin-left: 10px;
   color: #002b3d;
+  margin-bottom: 0;
 }
 
 .reservation-details .reserve-info i {
