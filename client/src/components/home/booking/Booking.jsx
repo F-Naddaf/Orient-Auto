@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
-import Vautour from "../../../components/vautour/Vautour";
+import Vautour from "../../../vautour/Vautour";
 import "./Booking.css";
 
 const getLocationQuery = gql`
@@ -34,6 +34,8 @@ const getVehicleQuery = gql`
 
 const Booking = (props) => {
   const [selectedCarId, setSelectedCarId] = useState("");
+  const [selectedPickUpLocation, setSelectedPickUpLocation] = useState("");
+  const [selectedDropOfLocation, setSelectedDropOfLocation] = useState("");
   const [categories, setCategories] = useState([]);
   const [locations, setLocations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,12 +58,21 @@ const Booking = (props) => {
     setLocations(selectedCarLocation);
   }, [props.vehicleData, props.locationData, selectedCarId]);
 
-  const handleCarChange = (event) => {
-    setSelectedCarId(event.target.value);
+  const handleCarChange = (e) => {
+    setSelectedCarId(e.target.value);
   };
 
   const handleReserveNow = (e) => {
     e.preventDefault();
+
+    const selectedCarIdFromEvent = e.target.form.cars.value;
+    const selectedPickUpFromEvent = e.target.form.pickUp.value;
+    const selectedDropOfFromEvent = e.target.form.dropOf.value;
+
+    setSelectedCarId(selectedCarIdFromEvent);
+    setSelectedPickUpLocation(selectedPickUpFromEvent);
+    setSelectedDropOfLocation(selectedDropOfFromEvent);
+
     setShowVautour(true);
     e.stopPropagation();
   };
@@ -114,7 +125,7 @@ const Booking = (props) => {
               </p>
             </label>
             <section className="select-conatiner">
-              <select name="drop-of">
+              <select name="pickUp">
                 <option value="select">
                   &#160; &#160; &#160; Select pick up location
                 </option>
@@ -135,7 +146,7 @@ const Booking = (props) => {
               </p>
             </label>
             <section className="select-conatiner">
-              <select name="drop-of">
+              <select name="dropOf">
                 <option value="select">
                   &#160; &#160; &#160; Select pick up location
                 </option>
@@ -170,7 +181,14 @@ const Booking = (props) => {
             Reserve Now
           </button>
         </form>
-        {showVautour && <Vautour onClose={handleCloseVautour} />}
+        {showVautour && (
+          <Vautour
+            onClose={handleCloseVautour}
+            selectedCarId={selectedCarId}
+            selectedPickUpLocation={selectedPickUpLocation}
+            selectedDropOfLocation={selectedDropOfLocation}
+          />
+        )}
       </div>
     </div>
   );

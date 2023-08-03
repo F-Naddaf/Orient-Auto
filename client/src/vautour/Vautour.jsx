@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import "./Vautour.css";
 
-const Vautour = ({ onClose }) => {
+const Vautour = ({
+  onClose,
+  selectedCarId,
+  selectedPickUpLocation,
+  selectedDropOffLocation,
+}) => {
   const vautourRef = useRef();
 
   useEffect(() => {
