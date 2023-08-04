@@ -220,6 +220,7 @@
   margin-top: 6px;
   font-size: 14px;
   padding: 6px;
+  color: var(--secondary-color);
 }
 
 .vautour-wrapper section form .checkbox-wrapper {

@@ -1,36 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
+import { ALL_LOCATIONS } from "../../../queries/locationsQuery";
+import { VEHICLE_CATEGORIES } from "../../../queries/vehicleCategories";
 import Vautour from "../../../vautour/Vautour";
 import "./Booking.css";
-
-const getLocationQuery = gql`
-  {
-    locations {
-      place
-      cars {
-        car {
-          id
-          model
-          mark
-        }
-      }
-    }
-  }
-`;
-
-const getVehicleQuery = gql`
-  {
-    carCategories {
-      name
-      cars {
-        id
-        model
-        mark
-      }
-    }
-  }
-`;
 
 const Booking = (props) => {
   const [selectedCarId, setSelectedCarId] = useState("");
@@ -231,6 +205,6 @@ const Booking = (props) => {
   );
 };
 
-export default graphql(getVehicleQuery, { name: "vehicleData" })(
-  graphql(getLocationQuery, { name: "locationData" })(Booking)
+export default graphql(VEHICLE_CATEGORIES, { name: "vehicleData" })(
+  graphql(ALL_LOCATIONS, { name: "locationData" })(Booking)
 );
