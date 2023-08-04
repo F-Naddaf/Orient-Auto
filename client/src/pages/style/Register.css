@@ -1,0 +1,143 @@
+.register-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+.register-container .orange {
+  width: 30%;
+  height: 100%;
+  background-color: var(--secondary-color-dark);
+}
+
+.register-container .blue {
+  width: 70%;
+  height: 100%;
+  background-color: var(--nav-color);
+}
+
+.register-container section {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-container section .register-card {
+  position: relative;
+  width: 80%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 50px 0;
+  justify-content: space-between;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.register-container .form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+}
+
+.register-container .register-card form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-container .form-wrapper h2 {
+  color: var(--secondary-color);
+  font-size: 26px;
+  font-weight: 800;
+  text-transform: uppercase;
+  word-spacing: 4px;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+
+.register-container .form-wrapper div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.register-container .form-wrapper .register-user-info {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.register-container .form-wrapper .register-user-info label {
+  width: 45%;
+}
+
+.register-card .form-wrapper label {
+  color: #c4c4c4;
+  font-size: 14px;
+  font-weight: 500;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.register-card .form-wrapper label input {
+  margin-top: 6px;
+  font-size: 14px;
+  padding: 6px;
+  color: var(--secondary-color);
+}
+
+.register-container .image-wrapper {
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.register-container .image-wrapper img {
+  width: 95%;
+}
+
+.register-card form .form-register-btn {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding-top: 20px;
+}
+
+.register-card form .form-register-btn .btn-register {
+  border: none;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 10px 30px;
+  width: 30%;
+  cursor: pointer;
+}
+
+.register-card form .form-register-btn .btn-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 10px 30px;
+  width: 30%;
+  cursor: pointer;
+}

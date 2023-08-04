@@ -25,7 +25,7 @@ const Contact = () => {
             <p>fady-naddaf@hotmail.com</p>
           </div>
           <div className="info">
-            <i class="fa-solid fa-location-dot"></i>
+            <i className="fa-solid fa-location-dot"></i>
             <p>Woerden, Utrecht</p>
           </div>
         </aside>
@@ -47,7 +47,7 @@ const Contact = () => {
             <textarea placeholder='" Write here... "' />
 
             <button>
-              <i class="fa-solid fa-envelope"></i>
+              <i className="fa-solid fa-envelope"></i>
               Send Message
             </button>
           </form>
