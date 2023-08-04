@@ -90,6 +90,10 @@
   margin-bottom: 20px;
 }
 
+.register-card .form-wrapper label span {
+  color: var(--secondary-color);
+}
+
 .register-card .form-wrapper label input {
   margin-top: 6px;
   font-size: 14px;
