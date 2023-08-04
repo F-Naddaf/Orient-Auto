@@ -1,6 +1,7 @@
 import graphql from "graphql";
 import { Car } from "../models/car.js";
 import { Location } from "../models/location.js";
+import { Reservation } from "../models/reservation.js";
 
 const {
   GraphQLObjectType,
@@ -80,6 +81,28 @@ const AvailableType = new GraphQLObjectType({
   }),
 });
 
+const ReservationType = new GraphQLObjectType({
+  name: "Reservation",
+  fields: () => ({
+    id: { type: GraphQLID },
+    firstName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    phone: { type: GraphQLString },
+    email: { type: GraphQLString },
+    age: { type: GraphQLInt },
+    address: { type: GraphQLString },
+    city: { type: GraphQLString },
+    zipCode: { type: GraphQLString },
+    pickUpLocation: { type: GraphQLString },
+    dropOfLocation: { type: GraphQLString },
+    pickUpdate: { type: GraphQLString },
+    dropOfdate: { type: GraphQLString },
+    pickUpTime: { type: GraphQLString },
+    dropOfTime: { type: GraphQLString },
+    carId: { type: GraphQLID },
+  }),
+});
+
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -154,6 +177,47 @@ const Mutation = new GraphQLObjectType({
           image: args.image,
         });
         return car.save();
+      },
+    },
+    AddReservation: {
+      type: ReservationType,
+      args: {
+        id: { type: GraphQLID },
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
+        phone: { type: GraphQLString },
+        email: { type: GraphQLString },
+        age: { type: GraphQLInt },
+        address: { type: GraphQLString },
+        city: { type: GraphQLString },
+        zipCode: { type: GraphQLString },
+        pickUpLocation: { type: GraphQLString },
+        dropOfLocation: { type: GraphQLString },
+        pickUpdate: { type: GraphQLString },
+        dropOfdate: { type: GraphQLString },
+        pickUpTime: { type: GraphQLString },
+        dropOfTime: { type: GraphQLString },
+        carId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        let reservation = new Reservation({
+          firstName: args.firstName,
+          lastName: args.lastName,
+          phone: args.phone,
+          email: args.email,
+          age: args.age,
+          address: args.address,
+          city: args.city,
+          zipCode: args.zipCode,
+          pickUpLocation: args.pickUpLocation,
+          dropOfLocation: args.dropOfLocation,
+          pickUpdate: args.pickUpdate,
+          dropOfdate: args.dropOfdate,
+          pickUpTime: args.pickUpTime,
+          dropOfTime: args.dropOfTime,
+          carId: args.carId,
+        });
+        return reservation.save();
       },
     },
     addLocation: {

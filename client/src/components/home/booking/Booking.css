@@ -107,14 +107,3 @@
   color: white;
   cursor: pointer;
 }
-
-.booking-conatiner .disabled {
-  height: 40px;
-  width: 100%;
-  background-color: rgb(168, 168, 168);
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  cursor: pointer;
-}

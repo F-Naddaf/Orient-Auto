@@ -118,8 +118,8 @@ const Vautour = ({
               <img src={car.image} alt={car.mark} />
             </aside>
           </section>
-          {/* section */}
           <div className="line"></div>
+          {/* USer information form */}
           <section>
             <form>
               <h5>personal information</h5>
@@ -149,9 +149,9 @@ const Vautour = ({
                 <label>
                   Phone Number <span>*</span>
                   <input
-                    type="text"
+                    type="tel"
                     name="phone"
-                    placeholder="Enter your phone number"
+                    placeholder="Example: 0612345678"
                     required
                   />
                   <p>This field is required.</p>
@@ -168,7 +168,7 @@ const Vautour = ({
                   <input
                     type="email"
                     name="email"
-                    placeholder="Enter your email address"
+                    placeholder="email@example.com"
                     required
                   />
                   <p>This field is required.</p>
