@@ -1,4 +1,5 @@
 import graphql from "graphql";
+import bcrypt from "bcryptjs";
 import { User } from "../models/user.js";
 import { Car } from "../models/car.js";
 import { Location } from "../models/location.js";
@@ -113,6 +114,7 @@ const UserType = new GraphQLObjectType({
     phone: { type: GraphQLString },
     age: { type: GraphQLInt },
     email: { type: GraphQLString },
+    password: { type: GraphQLString },
     address: { type: GraphQLString },
     city: { type: GraphQLString },
     zipCode: { type: GraphQLString },
@@ -203,6 +205,7 @@ const Mutation = new GraphQLObjectType({
         phone: { type: new GraphQLNonNull(GraphQLString) },
         age: { type: new GraphQLNonNull(GraphQLInt) },
         email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
         address: { type: new GraphQLNonNull(GraphQLString) },
         city: { type: new GraphQLNonNull(GraphQLString) },
         zipCode: { type: new GraphQLNonNull(GraphQLString) },
@@ -217,12 +220,15 @@ const Mutation = new GraphQLObjectType({
             "Email already exists. Please choose a different email"
           );
         }
+        const hashedPassword = await bcrypt.hash(args.password, 10);
+
         let user = new User({
           firstName: args.firstName,
           lastName: args.lastName,
           phone: args.phone,
           age: args.age,
           email: args.email,
+          password: hashedPassword,
           address: args.address,
           city: args.city,
           zipCode: args.zipCode,

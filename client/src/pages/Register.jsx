@@ -15,6 +15,8 @@ const Register = () => {
     phone: "",
     age: "",
     email: "",
+    password: "",
+    conformPassword: "",
     address: "",
     city: "",
     zipCode: "",
@@ -34,11 +36,18 @@ const Register = () => {
       !formData.phone.trim() ||
       !formData.age.trim() ||
       !formData.email.trim() ||
+      !formData.password.trim() ||
+      !formData.conformPassword.trim() ||
       !formData.address.trim() ||
       !formData.city.trim() ||
       !formData.zipCode.trim()
     ) {
       setMessage("Please fill up the required feilds");
+      return;
+    }
+
+    if (formData.password !== formData.conformPassword) {
+      setMessage("Passwords do not match");
       return;
     }
 
@@ -49,6 +58,7 @@ const Register = () => {
         phone: formData.phone,
         age: parseInt(formData.age),
         email: formData.email,
+        password: formData.password,
         address: formData.address,
         city: formData.city,
         zipCode: formData.zipCode,
@@ -62,7 +72,6 @@ const Register = () => {
             navigate("/");
           }, 2000);
         }
-        console.log("User added successfully:", result);
       })
       .catch((error) => {
         if (error.graphQLErrors && error.graphQLErrors.length > 0) {
@@ -71,7 +80,7 @@ const Register = () => {
           setMessage("An error occurred while adding the user.");
         }
         setSuccess(false);
-        console.error("Error adding user:", error);
+        setMessage("Error adding user:", error);
       });
   };
 
@@ -156,6 +165,32 @@ const Register = () => {
               </div>
               <div>
                 <label>
+                  Password <span>*</span>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  Conformed Password <span>*</span>
+                  <input
+                    type="password"
+                    name="conformPassword"
+                    placeholder="Conform your password"
+                    value={formData.conformPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
                   Address <span>*</span>
                   <input
                     type="text"
@@ -167,7 +202,7 @@ const Register = () => {
                   />
                 </label>
               </div>
-              <div>
+              <div className="register-user-info">
                 <label>
                   City <span>*</span>
                   <input
@@ -179,8 +214,6 @@ const Register = () => {
                     required
                   />
                 </label>
-              </div>
-              <div>
                 <label>
                   Zip Code <span>*</span>
                   <input
