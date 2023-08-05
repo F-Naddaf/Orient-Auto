@@ -1,47 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { gql } from "apollo-boost";
-import { graphql } from "react-apollo";
+import { useQuery } from "@apollo/client";
+import { GET_VEHICLE } from "../../../queries/vehicleQuery";
 import "./VehicleModel.css";
 
-const getVehicleQuery = gql`
-  {
-    carCategories {
-      name
-      cars {
-        id
-        model
-        mark
-        year
-        price
-        doors
-        image
-        ac
-        transmission
-        fuel
-      }
-    }
-  }
-`;
-
-const VehicleModel = (props) => {
+const VehicleModel = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCar, setSelectedCar] = useState(null);
   const [desplayedCar, setDesplayedCar] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const { data } = useQuery(GET_VEHICLE);
 
   const handleCarMarkClick = (car) => {
     setSelectedCar(car);
   };
 
   useEffect(() => {
-    if (props.data.loading) {
+    if (data && data.loading) {
       setIsLoading(true);
-    } else {
+    } else if (data) {
       setIsLoading(false);
-      setCategories(props.data.carCategories);
-      setDesplayedCar(props.data?.carCategories[0]?.cars[0]);
+      setCategories(data.carCategories);
+      setDesplayedCar(data?.carCategories[0]?.cars[0]);
     }
-  }, [props.data]);
+  }, [data]);
 
   return (
     <div className="vehicle-container">
@@ -139,4 +121,4 @@ const VehicleModel = (props) => {
   );
 };
 
-export default graphql(getVehicleQuery)(VehicleModel);
+export default VehicleModel;

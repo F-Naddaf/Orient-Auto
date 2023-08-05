@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { ApolloProvider } from "react-apollo";
+// import { ApolloProvider } from "react-apollo";
+// import client from "./apolloClient.js";
 import "./App.css";
 import ShowNavBar from "./components/showNavBar/ShowNavBar";
 import ShowFooter from "./components/showFooter/ShowFooter";
@@ -15,34 +15,26 @@ import Vehicles from "./pages/Vehicles";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
-const client = new ApolloClient({
-  uri: "http://localhost:4880/graphql",
-  cache: new InMemoryCache(),
-  // uri: process.env.URI,
-});
-
 function App() {
   return (
     <Router>
-      <ApolloProvider client={client}>
-        <div className="App">
-          <ShowNavBar>
-            <NavBar />
-          </ShowNavBar>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/vehicles" element={<Vehicles />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-          <ShowFooter>
-            <Footer />
-          </ShowFooter>
-        </div>
-      </ApolloProvider>
+      <div className="App">
+        <ShowNavBar>
+          <NavBar />
+        </ShowNavBar>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/vehicles" element={<Vehicles />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        <ShowFooter>
+          <Footer />
+        </ShowFooter>
+      </div>
     </Router>
   );
 }

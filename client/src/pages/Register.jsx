@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useMutation } from "react-apollo";
+import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../mutations/addUser.js";
 import PopUpMessage from "../components/popupMessage/PopUpMessage.jsx";
 import "./style/Register.css";

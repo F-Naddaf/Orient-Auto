@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
 import { Link, useLocation } from "react-router-dom";
+import { USER_INFO } from "../../queries/userInfo.js";
 import "./NavBar.css";
 
 const NavBar = () => {
@@ -13,6 +15,9 @@ const NavBar = () => {
       setIsSticky(false);
     }
   };
+
+  const { data } = useQuery(USER_INFO);
+  const user = data?.user || null;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -57,15 +62,26 @@ const NavBar = () => {
           </li>
         ))}
       </ul>
-      <div className="button-wrapper">
-        <Link className="login-btn" to="/login">
-          Login
-        </Link>
+      {user ? (
+        <div className="button-wrapper">
+          <p>
+            Hi {user.firstName} {user.lastName}{" "}
+          </p>
+          <Link className="register-btn" to="/">
+            LogOut
+          </Link>
+        </div>
+      ) : (
+        <div className="button-wrapper">
+          <Link className="login-btn" to="/login">
+            Login
+          </Link>
 
-        <Link className="register-btn" to="/register">
-          Register
-        </Link>
-      </div>
+          <Link className="register-btn" to="/register">
+            Register
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

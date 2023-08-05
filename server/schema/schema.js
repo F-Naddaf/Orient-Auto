@@ -1,5 +1,6 @@
 import graphql from "graphql";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { User } from "../models/user.js";
 import { Car } from "../models/car.js";
 import { Location } from "../models/location.js";
@@ -121,6 +122,14 @@ const UserType = new GraphQLObjectType({
   }),
 });
 
+const loginType = new GraphQLObjectType({
+  name: "login",
+  fields: () => ({
+    user: { type: UserType },
+    token: { type: GraphQLString },
+  }),
+});
+
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -234,6 +243,32 @@ const Mutation = new GraphQLObjectType({
           zipCode: args.zipCode,
         });
         return user.save();
+      },
+    },
+    loginUser: {
+      type: loginType,
+      args: {
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      async resolve(parent, { email, password }) {
+        const user = await User.findOne({ email });
+
+        if (!user) {
+          throw new Error("Invalid email or password");
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatch) {
+          throw new Error("Invalid email or password");
+        }
+
+        const token = jwt.sign({ userId: user.id }, "your-secret-key", {
+          expiresIn: "1h",
+        });
+
+        return { user, token };
       },
     },
     AddReservation: {
