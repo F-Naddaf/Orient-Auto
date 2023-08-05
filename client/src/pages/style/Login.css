@@ -1,0 +1,139 @@
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+.login-container .orange {
+  width: 30%;
+  height: 100%;
+  background-color: var(--secondary-color-dark);
+}
+
+.login-container .black {
+  width: 70%;
+  height: 100%;
+  background-color: black;
+}
+
+.login-container section {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container section .login-card {
+  position: relative;
+  width: 80%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 50px 0;
+  justify-content: space-between;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-container .form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+}
+
+.login-container .login-card form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container .form-wrapper h2 {
+  color: var(--secondary-color);
+  font-size: 26px;
+  font-weight: 800;
+  text-transform: uppercase;
+  word-spacing: 4px;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+
+.login-container .form-wrapper div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-card .form-wrapper label {
+  color: #c4c4c4;
+  font-size: 14px;
+  font-weight: 500;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.login-card .form-wrapper label span {
+  color: var(--secondary-color);
+}
+
+.login-card .form-wrapper label input {
+  margin-top: 6px;
+  font-size: 14px;
+  padding: 6px;
+  color: var(--secondary-color);
+}
+
+.login-container .image-wrapper {
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.login-container .image-wrapper img {
+  width: 95%;
+}
+
+.login-card form .form-login-btn {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  padding-top: 20px;
+}
+
+.login-card form .form-login-btn .btn-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 5px 30px;
+  width: 30%;
+  cursor: pointer;
+}
+
+.login-card form .form-login-btn .btn-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 5px 30px;
+  width: 30%;
+  cursor: pointer;
+}

@@ -13,6 +13,7 @@ import Team from "./pages/Team";
 import Contact from "./pages/ContactUs";
 import Vehicles from "./pages/Vehicles";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 const client = new ApolloClient({
   uri: "http://localhost:4880/graphql",
@@ -35,6 +36,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
           <ShowFooter>
             <Footer />
