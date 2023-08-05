@@ -16,9 +16,9 @@ const Login = () => {
                 <label>
                   Email <span>*</span>
                   <input
-                    type="text"
-                    name="firstName"
-                    placeholder="Enter your first name"
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email address"
                     // value={formData.firstName}
                     // onChange={handleChange}
                     required
@@ -27,11 +27,11 @@ const Login = () => {
               </div>
               <div>
                 <label>
-                  Last Name <span>*</span>
+                  Password <span>*</span>
                   <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Enter your last name"
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
                     // value={formData.lastName}
                     // onChange={handleChange}
                     required
