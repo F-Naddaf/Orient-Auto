@@ -207,7 +207,16 @@ const Mutation = new GraphQLObjectType({
         city: { type: new GraphQLNonNull(GraphQLString) },
         zipCode: { type: new GraphQLNonNull(GraphQLString) },
       },
-      resolve(parent, args) {
+      async resolve(parent, args) {
+        if (args.age < 18) {
+          throw new Error("User must be at least 18 years old.");
+        }
+        const existingUser = await User.findOne({ email: args.email });
+        if (existingUser) {
+          throw new Error(
+            "Email already exists. Please choose a different email"
+          );
+        }
         let user = new User({
           firstName: args.firstName,
           lastName: args.lastName,

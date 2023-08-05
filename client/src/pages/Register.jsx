@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-apollo";
 import { ADD_USER } from "../mutations/addUser.js";
+import PopUpMessage from "../components/popupMessage/PopUpMessage.jsx";
 import "./style/Register.css";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,7 +28,6 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("before", formData);
     if (
       !formData.firstName.trim() ||
       !formData.lastName.trim() ||
@@ -35,9 +38,9 @@ const Register = () => {
       !formData.city.trim() ||
       !formData.zipCode.trim()
     ) {
+      setMessage("Please fill up the required feilds");
       return;
     }
-    console.log("after", formData);
 
     addUser({
       variables: {
@@ -52,9 +55,22 @@ const Register = () => {
       },
     })
       .then((result) => {
+        if (result) {
+          setMessage("Your account has been successfully created");
+          setSuccess(true);
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        }
         console.log("User added successfully:", result);
       })
       .catch((error) => {
+        if (error.graphQLErrors && error.graphQLErrors.length > 0) {
+          setMessage(error.graphQLErrors[0].message);
+        } else {
+          setMessage("An error occurred while adding the user.");
+        }
+        setSuccess(false);
         console.error("Error adding user:", error);
       });
   };
@@ -189,6 +205,7 @@ const Register = () => {
           </aside>
         </div>
       </section>
+      <PopUpMessage message={message} success={success} />
     </div>
   );
 };
