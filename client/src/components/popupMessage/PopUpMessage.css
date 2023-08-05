@@ -1,0 +1,52 @@
+.popup-message-container {
+  width: fit-content;
+  height: 40px;
+  padding: 10px;
+  background-color: #eee;
+  box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-radius: 5px;
+  transform: translate(-50%, -60px);
+  transition: transform 1s ease-in-out;
+}
+
+.show-message {
+  transform: translate(-50%, 15px);
+  transition: transform 1s ease-in-out;
+}
+
+.popup-message-container .success-message-wrapper,
+.unsuccess-message-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-message-container .unsuccess-message-wrapper p {
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: red;
+}
+
+.popup-message-container .unsuccess-message-wrapper .fa-circle-xmark {
+  font-size: 28px;
+  color: red;
+}
+
+.popup-message-container .success-message-wrapper p {
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: green;
+}
+
+.popup-message-container .success-message-wrapper .fa-circle-check {
+  font-size: 28px;
+  color: green;
+}

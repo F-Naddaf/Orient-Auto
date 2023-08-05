@@ -119,7 +119,21 @@
   padding-top: 20px;
 }
 
+.form-wrapper .message-wrapper {
+  width: fit-content;
+  color: green;
+}
+
+.form-wrapper .message-wrapper p {
+  font-size: 14px;
+  padding: 5px 10px;
+  color: white;
+}
+
 .register-card form .form-register-btn .btn-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background-color: var(--secondary-color);
   color: white;

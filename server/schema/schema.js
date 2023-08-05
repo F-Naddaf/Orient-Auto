@@ -1,4 +1,6 @@
 import graphql from "graphql";
+import bcrypt from "bcryptjs";
+import { User } from "../models/user.js";
 import { Car } from "../models/car.js";
 import { Location } from "../models/location.js";
 import { Reservation } from "../models/reservation.js";
@@ -103,6 +105,22 @@ const ReservationType = new GraphQLObjectType({
   }),
 });
 
+const UserType = new GraphQLObjectType({
+  name: "User",
+  fields: () => ({
+    id: { type: GraphQLID },
+    firstName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    phone: { type: GraphQLString },
+    age: { type: GraphQLInt },
+    email: { type: GraphQLString },
+    password: { type: GraphQLString },
+    address: { type: GraphQLString },
+    city: { type: GraphQLString },
+    zipCode: { type: GraphQLString },
+  }),
+});
+
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -179,10 +197,48 @@ const Mutation = new GraphQLObjectType({
         return car.save();
       },
     },
+    addUser: {
+      type: UserType,
+      args: {
+        firstName: { type: new GraphQLNonNull(GraphQLString) },
+        lastName: { type: new GraphQLNonNull(GraphQLString) },
+        phone: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+        address: { type: new GraphQLNonNull(GraphQLString) },
+        city: { type: new GraphQLNonNull(GraphQLString) },
+        zipCode: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      async resolve(parent, args) {
+        if (args.age < 18) {
+          throw new Error("User must be at least 18 years old.");
+        }
+        const existingUser = await User.findOne({ email: args.email });
+        if (existingUser) {
+          throw new Error(
+            "Email already exists. Please choose a different email"
+          );
+        }
+        const hashedPassword = await bcrypt.hash(args.password, 10);
+
+        let user = new User({
+          firstName: args.firstName,
+          lastName: args.lastName,
+          phone: args.phone,
+          age: args.age,
+          email: args.email,
+          password: hashedPassword,
+          address: args.address,
+          city: args.city,
+          zipCode: args.zipCode,
+        });
+        return user.save();
+      },
+    },
     AddReservation: {
       type: ReservationType,
       args: {
-        id: { type: GraphQLID },
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
         phone: { type: GraphQLString },
