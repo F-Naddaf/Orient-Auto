@@ -1,7 +1,5 @@
 import React from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-// import { ApolloProvider } from "react-apollo";
-// import client from "./apolloClient.js";
 import "./App.css";
 import ShowNavBar from "./components/showNavBar/ShowNavBar";
 import ShowFooter from "./components/showFooter/ShowFooter";

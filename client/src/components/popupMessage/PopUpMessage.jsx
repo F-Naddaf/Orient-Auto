@@ -7,11 +7,13 @@ const PopUpMessage = ({ message, success }) => {
   useEffect(() => {
     if (message) {
       setVisible(true);
-      const timer = setTimeout(() => {
-        setVisible(false);
-      }, 3000);
-      return () => clearTimeout(timer);
     }
+
+    const timer = setTimeout(() => {
+      setVisible(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, [message]);
   return (
     <div className={`popup-message-container ${visible ? "show-message" : ""}`}>

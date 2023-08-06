@@ -21,12 +21,13 @@ const Register = () => {
     city: "",
     zipCode: "",
   });
-  const [addUser] = useMutation(ADD_USER);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((data) => ({ ...data, [name]: value }));
   };
+
+  const [addUser] = useMutation(ADD_USER);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,7 +81,6 @@ const Register = () => {
           setMessage("An error occurred while adding the user.");
         }
         setSuccess(false);
-        setMessage("Error adding user:", error);
       });
   };
 

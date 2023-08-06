@@ -9,7 +9,6 @@ const LOGIN_USER = gql`
         lastName
         phone
         email
-        password
         age
         address
         city

@@ -9,7 +9,6 @@ const USER_INFO = gql`
       phone
       age
       email
-      password
       address
       city
       zipCode

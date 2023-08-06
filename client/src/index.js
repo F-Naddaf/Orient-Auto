@@ -1,17 +1,24 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import { ApolloProvider } from "@apollo/client";
-import client from "./apolloClient.js";
+import ReactDOM from "react-dom";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { AuthProvider } from "./context/authContext.js";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+const client = new ApolloClient({
+  uri: "http://localhost:4880/graphql",
+  cache: new InMemoryCache(),
+});
+
 const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
-root.render(
+const appRoot = (
   <ApolloProvider client={client}>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </ApolloProvider>
 );
 
+ReactDOM.render(appRoot, rootElement);
 reportWebVitals();

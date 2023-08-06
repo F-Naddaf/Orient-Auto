@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext.js";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../mutations/loginUser.js";
 import PopUpMessage from "../components/popupMessage/PopUpMessage.jsx";
@@ -13,6 +14,9 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const { setUser } = useContext(AuthContext);
+
   const [loginUser] = useMutation(LOGIN_USER);
 
   const handleChange = (e) => {
@@ -20,33 +24,50 @@ const Login = () => {
     setFormData((data) => ({ ...data, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    loginUser({
-      variables: {
-        email: formData.email,
-        password: formData.password,
-      },
-    })
-      .then((result) => {
-        if (result) {
-          setMessage("You have been logged in successfully");
-          setSuccess(true);
-          setTimeout(() => {
-            navigate("/");
-          }, 2000);
-        }
-      })
-      .catch((error) => {
-        if (error.graphQLErrors && error.graphQLErrors.length > 0) {
-          setMessage(error.graphQLErrors[0].message);
-        } else {
-          setMessage("An error occurred while adding the user.");
-        }
-        setSuccess(false);
-        setMessage("Error adding user:", error);
+    try {
+      const { data } = await loginUser({
+        variables: {
+          email: formData.email,
+          password: formData.password,
+        },
       });
+
+      console.log("Response from server:", data);
+
+      if (
+        data &&
+        data.loginUser &&
+        data.loginUser.user &&
+        data.loginUser.token
+      ) {
+        const { token, user } = data.loginUser;
+
+        localStorage.setItem("accessToken", token);
+        setUser(user);
+
+        setMessage("You have been logged in successfully");
+        setSuccess(true);
+
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } else {
+        throw new Error("Invalid response format from the server.");
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
+      if (error.message.includes("Invalid email or password")) {
+        setMessage("Invalid email or password. Please try again.");
+      } else {
+        setMessage(
+          "An error occurred while logging in. Please try again later."
+        );
+      }
+      setSuccess(false);
+    }
   };
 
   return (

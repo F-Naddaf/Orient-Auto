@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { USER_INFO } from "../../queries/userInfo.js";
+import { AuthContext } from "../../context/authContext.js";
 import "./NavBar.css";
 
 const NavBar = () => {
+  const { user, logout } = useContext(AuthContext);
   const [isSticky, setIsSticky] = useState(false);
   const location = useLocation();
 
@@ -16,8 +16,7 @@ const NavBar = () => {
     }
   };
 
-  const { data } = useQuery(USER_INFO);
-  const user = data?.user || null;
+  console.log("user", user);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -64,10 +63,12 @@ const NavBar = () => {
       </ul>
       {user ? (
         <div className="button-wrapper">
-          <p>
-            Hi {user.firstName} {user.lastName}{" "}
-          </p>
-          <Link className="register-btn" to="/">
+          <div className="user-name-container">
+            <p className="user-full-name">
+              Hi {user.firstName} {user.lastName}{" "}
+            </p>
+          </div>
+          <Link className="register-btn" to="/" onClick={logout}>
             LogOut
           </Link>
         </div>
