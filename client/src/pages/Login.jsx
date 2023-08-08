@@ -34,9 +34,6 @@ const Login = () => {
           password: formData.password,
         },
       });
-
-      console.log("Response from server:", data);
-
       if (
         data &&
         data.loginUser &&
@@ -44,9 +41,10 @@ const Login = () => {
         data.loginUser.token
       ) {
         const { token, user } = data.loginUser;
+        console.log("login user data:", user);
 
         localStorage.setItem("accessToken", token);
-        setUser(user);
+        setUser(data.loginUser.user);
 
         setMessage("You have been logged in successfully");
         setSuccess(true);
