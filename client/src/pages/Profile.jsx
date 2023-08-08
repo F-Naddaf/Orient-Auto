@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import Banner from "../components/banner/Banner";
 import BeatLoader from "react-spinners/BeatLoader";
