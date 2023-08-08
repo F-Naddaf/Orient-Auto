@@ -172,6 +172,16 @@ const RootQuery = new GraphQLObjectType({
         return Location.find({});
       },
     },
+    user: {
+      type: new GraphQLList(UserType),
+      resolve(parent, args, context) {
+        const { user } = context;
+        if (!user) {
+          return null;
+        }
+        return user;
+      },
+    },
   },
 });
 
@@ -220,29 +230,29 @@ const Mutation = new GraphQLObjectType({
         zipCode: { type: new GraphQLNonNull(GraphQLString) },
       },
       async resolve(parent, args) {
-        if (args.age < 18) {
-          throw new Error("User must be at least 18 years old.");
-        }
-        const existingUser = await User.findOne({ email: args.email });
-        if (existingUser) {
-          throw new Error(
-            "Email already exists. Please choose a different email"
-          );
-        }
-        const hashedPassword = await bcrypt.hash(args.password, 10);
+          if (args.age < 18) {
+            throw new Error("User must be at least 18 years old.");
+          }
+          const existingUser = await User.findOne({ email: args.email });
+          if (existingUser) {
+            throw new Error(
+              "Email already exists. Please choose a different email"
+            );
+          }
+          const hashedPassword = await bcrypt.hash(args.password, 10);
 
-        let user = new User({
-          firstName: args.firstName,
-          lastName: args.lastName,
-          phone: args.phone,
-          age: args.age,
-          email: args.email,
-          password: hashedPassword,
-          address: args.address,
-          city: args.city,
-          zipCode: args.zipCode,
-        });
-        return user.save();
+          let user = new User({
+            firstName: args.firstName,
+            lastName: args.lastName,
+            phone: args.phone,
+            age: args.age,
+            email: args.email,
+            password: hashedPassword,
+            address: args.address,
+            city: args.city,
+            zipCode: args.zipCode,
+          });
+          return await user.save();
       },
     },
     loginUser: {
@@ -255,16 +265,15 @@ const Mutation = new GraphQLObjectType({
         const user = await User.findOne({ email });
 
         if (!user) {
-          throw new Error("Invalid email or password");
+          throw new Error("Invalid email or password.");
         }
 
         const passwordMatch = await bcrypt.compare(password, user.password);
-
         if (!passwordMatch) {
-          throw new Error("Invalid email or password");
+          throw new Error("Invalid email or password!");
         }
 
-        const token = jwt.sign({ userId: user.id }, "your-secret-key", {
+        const token = jwt.sign({ userId: user.id }, "Ninja-cool@12_666", {
           expiresIn: "1h",
         });
 
