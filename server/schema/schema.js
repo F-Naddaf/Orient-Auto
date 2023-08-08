@@ -17,6 +17,17 @@ const {
   GraphQLInputObjectType,
 } = graphql;
 
+function authenticateToken(token) {
+  try {
+    const decodedToken = jwt.verify(token, "Ninja-cool@12_666");
+    const userId = decodedToken.userId;
+    const user = User.findById(userId);
+    return user;
+  } catch (error) {
+    throw new Error("Invalid token");
+  }
+}
+
 const CarCategoryType = new GraphQLObjectType({
   name: "CarCategory",
   fields: () => ({
@@ -173,13 +184,15 @@ const RootQuery = new GraphQLObjectType({
       },
     },
     user: {
-      type: new GraphQLList(UserType),
+      type: UserType,
       resolve(parent, args, context) {
-        const { user } = context;
-        if (!user) {
-          return null;
+        const authorization = context.headers["authorization"];
+        if (authorization) {
+          const token = authorization.replace("Bearer ", "");
+          const user = authenticateToken(token);
+          return user;
         }
-        return user;
+        throw new Error("Token not provided");
       },
     },
   },
@@ -230,29 +243,29 @@ const Mutation = new GraphQLObjectType({
         zipCode: { type: new GraphQLNonNull(GraphQLString) },
       },
       async resolve(parent, args) {
-          if (args.age < 18) {
-            throw new Error("User must be at least 18 years old.");
-          }
-          const existingUser = await User.findOne({ email: args.email });
-          if (existingUser) {
-            throw new Error(
-              "Email already exists. Please choose a different email"
-            );
-          }
-          const hashedPassword = await bcrypt.hash(args.password, 10);
+        if (args.age < 18) {
+          throw new Error("User must be at least 18 years old.");
+        }
+        const existingUser = await User.findOne({ email: args.email });
+        if (existingUser) {
+          throw new Error(
+            "Email already exists. Please choose a different email"
+          );
+        }
+        const hashedPassword = await bcrypt.hash(args.password, 10);
 
-          let user = new User({
-            firstName: args.firstName,
-            lastName: args.lastName,
-            phone: args.phone,
-            age: args.age,
-            email: args.email,
-            password: hashedPassword,
-            address: args.address,
-            city: args.city,
-            zipCode: args.zipCode,
-          });
-          return await user.save();
+        let user = new User({
+          firstName: args.firstName,
+          lastName: args.lastName,
+          phone: args.phone,
+          age: args.age,
+          email: args.email,
+          password: hashedPassword,
+          address: args.address,
+          city: args.city,
+          zipCode: args.zipCode,
+        });
+        return await user.save();
       },
     },
     loginUser: {

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
-// import { graphql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
-// import { graphql } from "react-apollo";
-import "./style/Vehicles.css";
 import Banner from "../components/banner/Banner";
 import { ALL_VEHICLES } from "../queries/allVehiclesQuery.js";
 import { ALL_LOCATIONS } from "../queries/locationsQuery";
+import "./style/Vehicles.css";
 
 const VehicleModels = (props) => {
   const [cars, setCars] = useState([]);

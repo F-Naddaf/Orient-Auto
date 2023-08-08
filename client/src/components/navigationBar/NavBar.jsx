@@ -67,6 +67,10 @@ const NavBar = () => {
             <p className="user-full-name">
               Hi {user.firstName} {user.lastName}{" "}
             </p>
+            <div className="user-menu">
+              <Link to="/profile">Profile</Link>
+              <Link to="/">Orders</Link>
+            </div>
           </div>
           <Link className="register-btn" to="/" onClick={logout}>
             LogOut

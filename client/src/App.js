@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Team from "./pages/Team";
 import Contact from "./pages/ContactUs";
 import Vehicles from "./pages/Vehicles";
+import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/vehicles" element={<Vehicles />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>

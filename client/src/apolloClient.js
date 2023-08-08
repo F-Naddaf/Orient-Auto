@@ -1,23 +1,27 @@
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+import {
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+  ApolloLink,
+} from "@apollo/client";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:4880/graphql",
 });
 
-const token = localStorage.getItem("accessToken");
-
-const authLink = setContext((_, { headers }) => {
-  return {
-    headers: {
-      ...headers,
-      Authorization: token ? `Bearer ${token}` : "",
-    },
+const middleware = new ApolloLink((operation, forward) => {
+  const headers = {
+    Authorization: token ? `Bearer ${token}` : "",
   };
+  operation.setContext({
+    headers,
+  });
+
+  return forward(operation);
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: new ApolloLink.from([middleware, httpLink]),
   cache: new InMemoryCache(),
 });
 
