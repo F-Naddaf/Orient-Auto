@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../../context/authContext.js";
 import "./NavBar.css";
 
 const NavBar = () => {
+  const { user, logout } = useContext(AuthContext);
   const [isSticky, setIsSticky] = useState(false);
   const location = useLocation();
 
@@ -13,6 +15,8 @@ const NavBar = () => {
       setIsSticky(false);
     }
   };
+
+  console.log("user", user);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -57,15 +61,28 @@ const NavBar = () => {
           </li>
         ))}
       </ul>
-      <div className="button-wrapper">
-        <Link className="login-btn" to="/login">
-          Login
-        </Link>
+      {user ? (
+        <div className="button-wrapper">
+          <div className="user-name-container">
+            <p className="user-full-name">
+              Hi {user.firstName} {user.lastName}{" "}
+            </p>
+          </div>
+          <Link className="register-btn" to="/" onClick={logout}>
+            LogOut
+          </Link>
+        </div>
+      ) : (
+        <div className="button-wrapper">
+          <Link className="login-btn" to="/login">
+            Login
+          </Link>
 
-        <Link className="register-btn" to="/register">
-          Register
-        </Link>
-      </div>
+          <Link className="register-btn" to="/register">
+            Register
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

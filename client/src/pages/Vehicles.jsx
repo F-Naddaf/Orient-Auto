@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
-import { graphql } from "react-apollo";
+// import { graphql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+// import { graphql } from "react-apollo";
 import "./style/Vehicles.css";
 import Banner from "../components/banner/Banner";
 import { ALL_VEHICLES } from "../queries/allVehiclesQuery.js";
@@ -11,15 +13,19 @@ const VehicleModels = (props) => {
   const [locations, setLocations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const { data: vehicleData } = useQuery(ALL_VEHICLES);
+  const { data: locationData } = useQuery(ALL_LOCATIONS);
+
   useEffect(() => {
-    if (props.vehicleData.loading || props.locationData.loading) {
+    const isDataLoaded = vehicleData && locationData;
+    if (!isDataLoaded) {
       setIsLoading(true);
     } else {
       setIsLoading(false);
-      setCars(props.vehicleData.cars);
-      setLocations(props.locationData.locations);
+      setCars(vehicleData.cars || []);
+      setLocations(locationData.locations || []);
     }
-  }, [props.vehicleData, props.locationData]);
+  }, [vehicleData, locationData]);
 
   const carWithAvailableLocations = cars.map((car) => {
     const locationsArray = locations
@@ -75,6 +81,4 @@ const VehicleModels = (props) => {
   );
 };
 
-export default graphql(ALL_VEHICLES, { name: "vehicleData" })(
-  graphql(ALL_LOCATIONS, { name: "locationData" })(VehicleModels)
-);
+export default VehicleModels;

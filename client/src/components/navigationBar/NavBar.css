@@ -62,6 +62,17 @@
   border-radius: 8px;
 }
 
+.nav-container .button-wrapper .user-name-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-container .button-wrapper .user-full-name {
+  color: var(--primary-color);
+  text-transform: capitalize;
+}
+
 .nav-container .button-wrapper .login-btn:hover {
   color: var(--secondary-color);
   border: 1px solid var(--secondary-color);

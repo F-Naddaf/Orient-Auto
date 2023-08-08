@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
-import { graphql } from "react-apollo";
+import { useQuery } from "@apollo/client";
 import { VEHICLE_BY_ID } from "../queries/vehicleById";
 import "./Vautour.css";
 
 const Vautour = ({
-  data,
   onClose,
   selectedCarId,
   selectedPickUpLocation,
@@ -17,15 +16,17 @@ const Vautour = ({
   const [car, setCar] = useState(null);
   const vautourRef = useRef();
 
+  const { data } = useQuery(VEHICLE_BY_ID, {
+    variables: { id: selectedCarId },
+  });
+
   useEffect(() => {
-    if (data && data.loading) {
+    if (!data) {
       setIsLoading(true);
     } else {
       setIsLoading(false);
-      if (data && data.car) {
         setCar(data.car);
       }
-    }
   }, [data]);
 
   useEffect(() => {
@@ -223,9 +224,4 @@ const Vautour = ({
   );
 };
 
-export default graphql(VEHICLE_BY_ID, {
-  name: "data",
-  options: (props) => ({
-    variables: { id: props.selectedCarId },
-  }),
-})(Vautour);
+export default Vautour;

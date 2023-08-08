@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useMutation } from "react-apollo";
+import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../mutations/addUser.js";
 import PopUpMessage from "../components/popupMessage/PopUpMessage.jsx";
 import "./style/Register.css";
@@ -21,12 +21,13 @@ const Register = () => {
     city: "",
     zipCode: "",
   });
-  const [addUser] = useMutation(ADD_USER);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((data) => ({ ...data, [name]: value }));
   };
+
+  const [addUser] = useMutation(ADD_USER);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,7 +81,6 @@ const Register = () => {
           setMessage("An error occurred while adding the user.");
         }
         setSuccess(false);
-        setMessage("Error adding user:", error);
       });
   };
 

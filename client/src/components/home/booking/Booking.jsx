@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { gql } from "apollo-boost";
-import { graphql } from "react-apollo";
+import { useQuery } from "@apollo/client";
 import { ALL_LOCATIONS } from "../../../queries/locationsQuery";
 import { VEHICLE_CATEGORIES } from "../../../queries/vehicleCategories";
 import Vautour from "../../../vautour/Vautour";
 import "./Booking.css";
 
-const Booking = (props) => {
+const Booking = () => {
   const [selectedCarId, setSelectedCarId] = useState("");
   const [selectedPickUpLocation, setSelectedPickUpLocation] = useState("");
   const [selectedDropOfLocation, setSelectedDropOfLocation] = useState("");
@@ -18,22 +17,33 @@ const Booking = (props) => {
   const [showVautour, setShowVautour] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
+  const { data: vehicleData, loading: vehicleDataLoading } =
+    useQuery(VEHICLE_CATEGORIES);
+  const { data: locationData, loading: locationDataLoading } =
+    useQuery(ALL_LOCATIONS);
+
   useEffect(() => {
-    if (props.vehicleData.loading || props.locationData.loading) {
+    const isDataLoaded = vehicleData && locationData;
+    if (!isDataLoaded || vehicleDataLoading || locationDataLoading) {
       setIsLoading(true);
     } else {
       setIsLoading(false);
-      setCategories(props.vehicleData.carCategories);
+      setCategories(vehicleData.carCategories);
+      const allLocations = locationData.locations;
+      const selectedCarLocation = allLocations
+        ?.filter((location) =>
+          location.cars.some((c) => c.car.id === selectedCarId)
+        )
+        .map((location) => location.place);
+      setLocations(selectedCarLocation);
     }
-
-    const allLocations = props.locationData.locations;
-    const selectedCarLocation = allLocations
-      ?.filter((location) =>
-        location.cars.some((c) => c.car.id === selectedCarId)
-      )
-      .map((location) => location.place);
-    setLocations(selectedCarLocation);
-  }, [props.vehicleData, props.locationData, selectedCarId]);
+  }, [
+    vehicleData,
+    locationData,
+    selectedCarId,
+    locationDataLoading,
+    vehicleDataLoading,
+  ]);
 
   const handleCarChange = (e) => {
     setSelectedCarId(e.target.value);
@@ -205,6 +215,4 @@ const Booking = (props) => {
   );
 };
 
-export default graphql(VEHICLE_CATEGORIES, { name: "vehicleData" })(
-  graphql(ALL_LOCATIONS, { name: "locationData" })(Booking)
-);
+export default Booking;
