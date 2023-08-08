@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import Banner from "../components/banner/Banner";
 import BeatLoader from "react-spinners/BeatLoader";
@@ -32,45 +32,47 @@ const Profile = () => {
           ) : (
             <>
               <table className="user-info">
-                <tr>
-                  <td>First Name:</td>
-                  <td>{user.firstName}</td>
-                </tr>
-                <tr>
-                  <td>Last Name:</td>
-                  <td>{user.lastName}</td>
-                </tr>
-                <tr>
-                  <td>Email address:</td>
-                  <td>{user.email}</td>
-                </tr>
-                <tr>
-                  <td>Phone number:</td>
-                  <td>{user.phone}</td>
-                </tr>
-                <tr>
-                  <td>Age:</td>
-                  <td>{user.age}</td>
-                </tr>
-                <tr>
-                  <td>Address:</td>
-                  <td>{user.address}</td>
-                </tr>
-                <tr>
-                  <td>City:</td>
-                  <td>{user.city}</td>
-                </tr>
-                <tr>
-                  <td>Zip-code:</td>
-                  <td>{user.zipCode}</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>First Name:</td>
+                    <td>{user.firstName}</td>
+                  </tr>
+                  <tr>
+                    <td>Last Name:</td>
+                    <td>{user.lastName}</td>
+                  </tr>
+                  <tr>
+                    <td>Email address:</td>
+                    <td>{user.email}</td>
+                  </tr>
+                  <tr>
+                    <td>Phone number:</td>
+                    <td>{user.phone}</td>
+                  </tr>
+                  <tr>
+                    <td>Age:</td>
+                    <td>{user.age}</td>
+                  </tr>
+                  <tr>
+                    <td>Address:</td>
+                    <td>{user.address}</td>
+                  </tr>
+                  <tr>
+                    <td>City:</td>
+                    <td>{user.city}</td>
+                  </tr>
+                  <tr>
+                    <td>Zip-code:</td>
+                    <td>{user.zipCode}</td>
+                  </tr>
+                </tbody>
               </table>
             </>
           )}
           <button className="edit-profile">
-          <i className="fa-solid fa-pen"></i>
+            <i className="fa-solid fa-pen"></i>
             Edit
-            </button>
+          </button>
         </section>
       </div>
     </div>
