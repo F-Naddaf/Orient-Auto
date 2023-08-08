@@ -39,7 +39,9 @@
 
 .nav-container .button-wrapper {
   display: flex;
+  align-items: center;
   margin-right: 40px;
+  height: 100%;
 }
 
 .nav-container .button-wrapper a {
@@ -48,6 +50,42 @@
   align-items: center;
   width: 80px;
   height: 30px;
+}
+
+.nav-container .button-wrapper .user-name-container {
+  display: flex;
+  position: relative;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nav-container .button-wrapper .user-name-container:hover .user-menu {
+  display: block;
+}
+
+.button-wrapper .user-name-container .user-menu {
+  position: absolute;
+  display: none;
+  top: 70px;
+  left: 50%;
+  background-color: var(--nav-color);
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+}
+
+.button-wrapper .user-name-container .user-menu a {
+  font-size: 14px;
+  width: 100%;
+  color: white;
+  padding: 20px 0;
+}
+
+.button-wrapper .user-name-container .user-menu a:hover {
+  background-color: var(--primary-color);
 }
 
 .nav-container .list li a.active {
@@ -60,12 +98,6 @@
   font-weight: 600;
   border: 1px solid var(--primary-color);
   border-radius: 8px;
-}
-
-.nav-container .button-wrapper .user-name-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .nav-container .button-wrapper .user-full-name {
