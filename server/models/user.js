@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   address: String,
   city: String,
   zipCode: String,
+  token: String,
 });
 
 export const User = mongoose.model("User", userSchema);
