@@ -50,10 +50,6 @@
 }
 
 .profile-section .profile-wrapper .user-info {
-  /* display: flex; */
-  /* align-items: flex-start;
-  justify-content: space-between; */
-  /* width: 100%; */
   padding: 20px;
   border-collapse: collapse;
 }
@@ -75,8 +71,6 @@
   border: none;
   cursor: pointer;
   outline: none;
-  /* background-color: var(--secondary-color-dark); */
-  /* color: white; */
   color: var(--secondary-color-dark);
   font-size: 16px;
   font-weight: 600;
