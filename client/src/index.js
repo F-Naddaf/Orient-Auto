@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { AuthProvider } from "./context/authContext.js";
 import "./index.css";
@@ -20,5 +20,6 @@ const appRoot = (
   </ApolloProvider>
 );
 
-ReactDOM.render(appRoot, rootElement);
+const root = ReactDOM.createRoot(rootElement);
+root.render(appRoot);
 reportWebVitals();

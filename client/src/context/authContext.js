@@ -11,12 +11,16 @@ export const AuthProvider = ({ children }) => {
     return token;
   });
 
-  const { data } = useQuery(USER_INFO);
+  const { data } = useQuery(USER_INFO, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log("user context", data);
 
   useEffect(() => {
-    console.log("user context", data);
     if (token) {
-      setUser(data);
+      setUser(data?.user);
     }
   }, [token, data]);
 

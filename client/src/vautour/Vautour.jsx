@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { AuthContext } from "../context/authContext";
+import { ADD_VAUTOUR } from "../mutations/addVautour";
 import { VEHICLE_BY_ID } from "../queries/vehicleById";
 import "./Vautour.css";
 
@@ -17,10 +19,55 @@ const Vautour = ({
   const { user } = useContext(AuthContext);
   const [car, setCar] = useState(null);
   const vautourRef = useRef();
+  const [reservationData, setReservationData] = useState({
+    pickUpLocation: selectedPickUpLocation,
+    dropOfLocation: selectedDropOfLocation,
+    pickUpdate: selectedPickDate,
+    dropOfdate: selectedDropDate,
+    pickUpTime: "",
+    dropOfTime: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    age: "",
+    email: "",
+    password: "",
+    conformPassword: "",
+    address: "",
+    city: "",
+    zipCode: "",
+    carId: selectedCarId,
+  });
 
   const { data } = useQuery(VEHICLE_BY_ID, {
     variables: { id: selectedCarId },
   });
+
+  const [addUser] = useMutation(ADD_VAUTOUR);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setReservationData((data) => ({ ...data, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      !reservationData.firstName.trim() ||
+      !reservationData.lastName.trim() ||
+      !reservationData.phone.trim() ||
+      !reservationData.age.trim() ||
+      !reservationData.email.trim() ||
+      !reservationData.password.trim() ||
+      !reservationData.conformPassword.trim() ||
+      !reservationData.address.trim() ||
+      !reservationData.city.trim() ||
+      !reservationData.zipCode.trim()
+    ) {
+      // setMessage("Please fill up the required feilds");
+      return;
+    }
+  };
 
   useEffect(() => {
     if (!data) {
@@ -43,6 +90,7 @@ const Vautour = ({
       document.removeEventListener("click", handleClickOutside);
     };
   }, [onClose]);
+
   return (
     <div className="vautour-cantainer">
       {isLoading ? (
@@ -83,7 +131,11 @@ const Vautour = ({
                 </div>
                 <span>
                   <p>{selectedPickDate} /</p>
-                  <input type="time" className="input-time" />
+                  <input
+                    type="time"
+                    className="input-time"
+                    onChange={handleChange}
+                  />
                 </span>
               </div>
               <div className="reserve-info">
@@ -93,7 +145,11 @@ const Vautour = ({
                 </div>
                 <p>
                   {selectedDropDate} /
-                  <input type="time" className="input-time" />
+                  <input
+                    type="time"
+                    className="input-time"
+                    onChange={handleChange}
+                  />
                 </p>
               </div>
               <div className="reserve-info">
@@ -134,6 +190,7 @@ const Vautour = ({
                     name="firstName"
                     placeholder="Enter your first name"
                     value={user ? user.firstName : ""}
+                    onChange={handleChange}
                     required
                   />
                   <p>This field is required.</p>
@@ -144,7 +201,8 @@ const Vautour = ({
                     type="text"
                     name="lastName"
                     placeholder="Enter your last name"
-                    value={user ? user.lastName : " "}
+                    value={user ? user.lastName : ""}
+                    onChange={handleChange}
                     required
                   />
                   <p>This field is required.</p>
@@ -158,6 +216,7 @@ const Vautour = ({
                     name="phone"
                     placeholder="Example: 0612345678"
                     value={user ? user.phone : ""}
+                    onChange={handleChange}
                     required
                   />
                   <p>This field is required.</p>
@@ -169,6 +228,7 @@ const Vautour = ({
                     name="age"
                     placeholder="18"
                     value={user ? user.age : ""}
+                    onChange={handleChange}
                     required
                   />
                   <p>This field is required.</p>
@@ -182,6 +242,7 @@ const Vautour = ({
                     name="email"
                     placeholder="email@example.com"
                     value={user ? user.email : ""}
+                    onChange={handleChange}
                     required
                   />
                   <p>This field is required.</p>
@@ -193,6 +254,7 @@ const Vautour = ({
                     name="address"
                     placeholder="Enter your street address"
                     value={user ? user.address : ""}
+                    onChange={handleChange}
                     required
                   />
                   <p>This field is required.</p>
@@ -206,6 +268,7 @@ const Vautour = ({
                     name="city"
                     placeholder="Enter your city name"
                     value={user ? user.city : ""}
+                    onChange={handleChange}
                     required
                   />
                   <p>This field is required.</p>
@@ -217,6 +280,7 @@ const Vautour = ({
                     name="zip-code"
                     placeholder="Enter your zip code"
                     value={user ? user.zipCode : ""}
+                    onChange={handleChange}
                     required
                   />
                   <p>This field is required.</p>
@@ -229,7 +293,9 @@ const Vautour = ({
                 </label>
               </div>
               <div className="form-reserve-btn">
-                <button className="btn-reserve">Reserve Now</button>
+                <button onClick={handleSubmit} className="btn-reserve">
+                  Reserve Now
+                </button>
               </div>
             </form>
           </section>
