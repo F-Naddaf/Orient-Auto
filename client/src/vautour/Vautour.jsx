@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useQuery } from "@apollo/client";
+import { AuthContext } from "../context/authContext";
 import { VEHICLE_BY_ID } from "../queries/vehicleById";
 import "./Vautour.css";
 
@@ -13,6 +14,7 @@ const Vautour = ({
   selectedDropDate,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useContext(AuthContext);
   const [car, setCar] = useState(null);
   const vautourRef = useRef();
 
@@ -25,8 +27,8 @@ const Vautour = ({
       setIsLoading(true);
     } else {
       setIsLoading(false);
-        setCar(data.car);
-      }
+      setCar(data.car);
+    }
   }, [data]);
 
   useEffect(() => {
@@ -131,6 +133,7 @@ const Vautour = ({
                     type="text"
                     name="firstName"
                     placeholder="Enter your first name"
+                    value={user ? user.firstName : ""}
                     required
                   />
                   <p>This field is required.</p>
@@ -141,6 +144,7 @@ const Vautour = ({
                     type="text"
                     name="lastName"
                     placeholder="Enter your last name"
+                    value={user ? user.lastName : " "}
                     required
                   />
                   <p>This field is required.</p>
@@ -153,13 +157,20 @@ const Vautour = ({
                     type="tel"
                     name="phone"
                     placeholder="Example: 0612345678"
+                    value={user ? user.phone : ""}
                     required
                   />
                   <p>This field is required.</p>
                 </label>
                 <label>
                   Age <span>*</span>
-                  <input type="number" name="age" placeholder="18" required />
+                  <input
+                    type="number"
+                    name="age"
+                    placeholder="18"
+                    value={user ? user.age : ""}
+                    required
+                  />
                   <p>This field is required.</p>
                 </label>
               </div>
@@ -170,6 +181,7 @@ const Vautour = ({
                     type="email"
                     name="email"
                     placeholder="email@example.com"
+                    value={user ? user.email : ""}
                     required
                   />
                   <p>This field is required.</p>
@@ -180,6 +192,7 @@ const Vautour = ({
                     type="text"
                     name="address"
                     placeholder="Enter your street address"
+                    value={user ? user.address : ""}
                     required
                   />
                   <p>This field is required.</p>
@@ -192,6 +205,7 @@ const Vautour = ({
                     type="text"
                     name="city"
                     placeholder="Enter your city name"
+                    value={user ? user.city : ""}
                     required
                   />
                   <p>This field is required.</p>
@@ -202,6 +216,7 @@ const Vautour = ({
                     type="text"
                     name="zip-code"
                     placeholder="Enter your zip code"
+                    value={user ? user.zipCode : ""}
                     required
                   />
                   <p>This field is required.</p>
