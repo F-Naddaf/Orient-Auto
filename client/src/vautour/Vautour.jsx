@@ -135,6 +135,9 @@ const Vautour = ({
           setSuccess(true);
           setError(false);
           setMessage("Your account has been successfully created");
+          setTimeout(() => {
+            onClose();
+          }, 1500);
         }
       })
       .catch((error) => {
@@ -261,7 +264,6 @@ const Vautour = ({
             </aside>
           </section>
           <div className="line"></div>
-          {/* USer information form */}
           <section>
             <form>
               <h5>personal information</h5>
