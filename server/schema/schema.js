@@ -17,11 +17,11 @@ const {
   GraphQLInputObjectType,
 } = graphql;
 
-function authenticateToken(token) {
+async function authenticateToken(token) {
   try {
     const decodedToken = jwt.verify(token, "Ninja-cool@12_666");
     const userId = decodedToken.userId;
-    const user = User.findById(userId);
+    const user = await User.findById(userId);
     return user;
   } catch (error) {
     throw new Error("Invalid token");
@@ -114,6 +114,8 @@ const ReservationType = new GraphQLObjectType({
     pickUpTime: { type: GraphQLString },
     dropOfTime: { type: GraphQLString },
     carId: { type: GraphQLID },
+    userId: { type: GraphQLID },
+    token: { type: GraphQLString },
   }),
 });
 
@@ -130,6 +132,12 @@ const UserType = new GraphQLObjectType({
     address: { type: GraphQLString },
     city: { type: GraphQLString },
     zipCode: { type: GraphQLString },
+    reservations: {
+      type: new GraphQLList(ReservationType),
+      resolve(parent, args) {
+        return Reservation.find({ userId: parent.id });
+      },
+    },
   }),
 });
 
@@ -310,9 +318,16 @@ const Mutation = new GraphQLObjectType({
         dropOfdate: { type: GraphQLString },
         pickUpTime: { type: GraphQLString },
         dropOfTime: { type: GraphQLString },
-        carId: { type: GraphQLID },
+        carId: { type: GraphQLString },
+        userId: { type: GraphQLString },
+        token: { type: GraphQLString },
       },
-      resolve(parent, args) {
+      async resolve(parent, args, context) {
+        let user = null;
+        if (args.token) {
+          user = await authenticateToken(args.token);
+        }
+
         let reservation = new Reservation({
           firstName: args.firstName,
           lastName: args.lastName,
@@ -330,7 +345,17 @@ const Mutation = new GraphQLObjectType({
           dropOfTime: args.dropOfTime,
           carId: args.carId,
         });
-        return reservation.save();
+
+        if (user) {
+          reservation.userId = user.id;
+          user.reservations.push(reservation._id);
+          await user.save();
+        } else {
+          reservation.userId = null;
+          reservation.token = "guest";
+        }
+        await reservation.save();
+        return reservation;
       },
     },
     addLocation: {

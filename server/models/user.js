@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
   address: String,
   city: String,
   zipCode: String,
-  token: String,
+  reservations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Reservation" }],
 });
 
 export const User = mongoose.model("User", userSchema);
