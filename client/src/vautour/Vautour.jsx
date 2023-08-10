@@ -3,7 +3,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { AuthContext } from "../context/authContext";
-import { ADD_VAUTOUR } from "../mutations/addVautour";
+import { ADD_VAUTOUR } from "../mutations/addVautour.js";
 import { VEHICLE_BY_ID } from "../queries/vehicleById";
 import "./Vautour.css";
 
@@ -18,6 +18,10 @@ const Vautour = ({
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(AuthContext);
   const [car, setCar] = useState(null);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState("");
+  const token = localStorage.getItem("accessToken");
   const vautourRef = useRef();
   const [reservationData, setReservationData] = useState({
     pickUpLocation: selectedPickUpLocation,
@@ -26,16 +30,17 @@ const Vautour = ({
     dropOfdate: selectedDropDate,
     pickUpTime: "",
     dropOfTime: "",
-    firstName: "",
-    lastName: "",
-    phone: "",
-    age: "",
-    email: "",
-    password: "",
-    conformPassword: "",
-    address: "",
-    city: "",
-    zipCode: "",
+    user: {
+      firstName: user ? user.firstName : "",
+      lastName: user ? user.lastName : "",
+      phone: user ? user.phone : "",
+      age: user ? user.age : "",
+      email: user ? user.email : "",
+      address: user ? user.address : "",
+      city: user ? user.city : "",
+      zipCode: user ? user.zipCode : "",
+      userId: user ? user.id : "",
+    },
     carId: selectedCarId,
   });
 
@@ -43,30 +48,104 @@ const Vautour = ({
     variables: { id: selectedCarId },
   });
 
-  const [addUser] = useMutation(ADD_VAUTOUR);
+  const [AddReservation] = useMutation(ADD_VAUTOUR);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setReservationData((data) => ({ ...data, [name]: value }));
+    setReservationData((data) => {
+      const newData = { ...data };
+      if (name.startsWith("user.")) {
+        const userField = name.substring(5);
+        newData.user[userField] = value;
+      } else if (name === "pickUpTime" || name === "dropOfTime") {
+        newData[name] = value;
+      } else {
+        newData[name] = value;
+      }
+      return newData;
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !reservationData.firstName.trim() ||
-      !reservationData.lastName.trim() ||
-      !reservationData.phone.trim() ||
-      !reservationData.age.trim() ||
-      !reservationData.email.trim() ||
-      !reservationData.password.trim() ||
-      !reservationData.conformPassword.trim() ||
-      !reservationData.address.trim() ||
-      !reservationData.city.trim() ||
-      !reservationData.zipCode.trim()
-    ) {
-      // setMessage("Please fill up the required feilds");
+
+    const emptyFields = [];
+
+    const requiredFields = [
+      "pickUpTime",
+      "dropOfTime",
+      "user.firstName",
+      "user.lastName",
+      "user.phone",
+      "user.age",
+      "user.email",
+      "user.address",
+      "user.city",
+      "user.zipCode",
+    ];
+
+    requiredFields.forEach((field) => {
+      const value = field
+        .split(".")
+        .reduce((obj, key) => obj && obj[key], reservationData);
+
+      if (!value || (typeof value === "string" && !value.trim())) {
+        emptyFields.push(field);
+      }
+    });
+
+    if (emptyFields.length > 0) {
+      const emptyFieldNames = emptyFields.join(", ");
+      setError(true);
+      setMessage(`Please fill up the required fields: ${emptyFieldNames}`);
       return;
     }
+
+    const mutationVariables = {
+      firstName: reservationData.user.firstName,
+      lastName: reservationData.user.lastName,
+      phone: reservationData.user.phone,
+      age: parseInt(reservationData.user.age),
+      email: reservationData.user.email,
+      address: reservationData.user.address,
+      city: reservationData.user.city,
+      zipCode: reservationData.user.zipCode,
+      pickUpLocation: reservationData.pickUpLocation,
+      dropOfLocation: reservationData.dropOfLocation,
+      pickUpdate: reservationData.pickUpdate,
+      dropOfdate: reservationData.dropOfdate,
+      pickUpTime: reservationData.pickUpTime,
+      dropOfTime: reservationData.dropOfTime,
+      carId: reservationData.carId,
+    };
+
+    if (user) {
+      mutationVariables.userId = reservationData.user.userId;
+    }
+
+    if (token) {
+      mutationVariables.token = token;
+    }
+
+    AddReservation({
+      variables: mutationVariables,
+    })
+      .then((result) => {
+        if (result) {
+          setSuccess(true);
+          setError(false);
+          setMessage("Your account has been successfully created");
+        }
+      })
+      .catch((error) => {
+        if (error.graphQLErrors && error.graphQLErrors.length > 0) {
+          setError(true);
+          setMessage(error.graphQLErrors[0].message);
+        } else {
+          setError(true);
+          setMessage("An error occurred while adding the user.");
+        }
+      });
   };
 
   useEffect(() => {
@@ -134,6 +213,8 @@ const Vautour = ({
                   <input
                     type="time"
                     className="input-time"
+                    name="pickUpTime"
+                    value={reservationData.pickUpTime}
                     onChange={handleChange}
                   />
                 </span>
@@ -148,6 +229,8 @@ const Vautour = ({
                   <input
                     type="time"
                     className="input-time"
+                    name="dropOfTime"
+                    value={reservationData.dropOfTime}
                     onChange={handleChange}
                   />
                 </p>
@@ -187,9 +270,9 @@ const Vautour = ({
                   First Name <span>*</span>
                   <input
                     type="text"
-                    name="firstName"
+                    name="user.firstName"
                     placeholder="Enter your first name"
-                    value={user ? user.firstName : ""}
+                    value={reservationData.user.firstName}
                     onChange={handleChange}
                     required
                   />
@@ -199,9 +282,9 @@ const Vautour = ({
                   Last Name <span>*</span>
                   <input
                     type="text"
-                    name="lastName"
+                    name="user.lastName"
                     placeholder="Enter your last name"
-                    value={user ? user.lastName : ""}
+                    value={reservationData.user.lastName}
                     onChange={handleChange}
                     required
                   />
@@ -213,9 +296,9 @@ const Vautour = ({
                   Phone Number <span>*</span>
                   <input
                     type="tel"
-                    name="phone"
+                    name="user.phone"
                     placeholder="Example: 0612345678"
-                    value={user ? user.phone : ""}
+                    value={reservationData.user.phone}
                     onChange={handleChange}
                     required
                   />
@@ -225,9 +308,9 @@ const Vautour = ({
                   Age <span>*</span>
                   <input
                     type="number"
-                    name="age"
+                    name="user.age"
                     placeholder="18"
-                    value={user ? user.age : ""}
+                    value={reservationData.user.age}
                     onChange={handleChange}
                     required
                   />
@@ -239,9 +322,9 @@ const Vautour = ({
                   Email <span>*</span>
                   <input
                     type="email"
-                    name="email"
+                    name="user.email"
                     placeholder="email@example.com"
-                    value={user ? user.email : ""}
+                    value={reservationData.user.email}
                     onChange={handleChange}
                     required
                   />
@@ -251,9 +334,9 @@ const Vautour = ({
                   Address <span>*</span>
                   <input
                     type="text"
-                    name="address"
+                    name="user.address"
                     placeholder="Enter your street address"
-                    value={user ? user.address : ""}
+                    value={reservationData.user.address}
                     onChange={handleChange}
                     required
                   />
@@ -265,9 +348,9 @@ const Vautour = ({
                   City <span>*</span>
                   <input
                     type="text"
-                    name="city"
+                    name="user.city"
                     placeholder="Enter your city name"
-                    value={user ? user.city : ""}
+                    value={reservationData.user.city}
                     onChange={handleChange}
                     required
                   />
@@ -277,9 +360,9 @@ const Vautour = ({
                   Zip Code <span>*</span>
                   <input
                     type="text"
-                    name="zip-code"
+                    name="user.zipCode"
                     placeholder="Enter your zip code"
-                    value={user ? user.zipCode : ""}
+                    value={reservationData.user.zipCode}
                     onChange={handleChange}
                     required
                   />
@@ -292,6 +375,16 @@ const Vautour = ({
                   Please send me latest news and updates
                 </label>
               </div>
+              {error && (
+                <div className="error-message">
+                  <p>{message}</p>
+                </div>
+              )}
+              {success && (
+                <div className="success-message">
+                  <p>{message}</p>
+                </div>
+              )}
               <div className="form-reserve-btn">
                 <button onClick={handleSubmit} className="btn-reserve">
                   Reserve Now

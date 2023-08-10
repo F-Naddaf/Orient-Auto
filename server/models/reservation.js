@@ -16,6 +16,7 @@ const reservationSchema = new mongoose.Schema({
   pickUpTime: String,
   dropOfTime: String,
   carId: String,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 export const Reservation = mongoose.model("Reservations", reservationSchema);

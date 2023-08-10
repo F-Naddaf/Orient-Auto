@@ -20,7 +20,6 @@
 .vautour-wrapper header {
   height: 40px;
   background-color: var(--secondary-color);
-  /* background-color: #00405c; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +39,6 @@
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  /* color: var(--nav-color); */
   color: var(--secondary-color);
   border-radius: 50%;
   background-color: white;
@@ -52,7 +50,6 @@
 
 .vautour-cantainer .vautour-wrapper .about-reservation {
   background-color: rgba(237, 112, 0, 0.2);
-  /* background-color: rgba(14, 124, 173, 0.2); */
   padding: 15px 0;
 }
 
@@ -60,7 +57,6 @@
   display: flex;
   align-items: center;
   color: var(--secondary-color);
-  /* color: var(--primary-color-dark); */
   padding-left: 10px;
   padding-bottom: 15px;
 }
@@ -109,17 +105,14 @@
 }
 
 .vautour-wrapper .reservation-details h5 {
-  /* .vautour-wrapper .reservation-details h5:first-child { */
   font-size: 20px;
   margin-bottom: 30px;
   color: var(--secondary-color);
-  /* color: #002b3d; */
 }
 
 .vautour-wrapper .reservation-details h6 {
   font-size: 20px;
   margin-bottom: 30px;
-  /* color: var(--secondary-color); */
   color: #002b3d;
 }
 
@@ -127,7 +120,6 @@
   font-size: 20px;
   margin-bottom: 30px;
   color: var(--secondary-color);
-  /* color: var(--primary-color-dark); */
 }
 
 .vautour-wrapper .reservation-details span {
@@ -150,7 +142,6 @@
 .reservation-details .reserve-info div {
   display: flex;
   margin: 6px 0;
-  /* color: var(--primary-color-dark); */
 }
 
 .reservation-details .reserve-info h6 {
@@ -167,7 +158,6 @@
 .reservation-details .reserve-info p {
   font-size: 14px;
   margin: 5px 0;
-  /* color: var(--secondary-color); */
   color: var(--primary-color-dark);
 }
 
@@ -186,7 +176,6 @@
 .vautour-wrapper section form h5 {
   font-size: 20px;
   margin: 30px;
-  /* color: var(--secondary-color); */
   color: #002b3d;
   text-transform: uppercase;
 }
@@ -241,6 +230,23 @@
 
 .vautour-wrapper section form .checkbox-wrapper input {
   margin-right: 8px;
+}
+
+.vautour-cantainer .error-message, .success-message {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vautour-cantainer .error-message p {
+  font-size: 14px;
+  color: red;
+}
+
+.vautour-cantainer .success-message p {
+  font-size: 14px;
+  color: green;
 }
 
 .vautour-wrapper section form .form-reserve-btn {
