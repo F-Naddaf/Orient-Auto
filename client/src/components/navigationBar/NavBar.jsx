@@ -16,8 +16,6 @@ const NavBar = () => {
     }
   };
 
-  console.log("user", user);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -67,7 +65,7 @@ const NavBar = () => {
             <p className="user-full-name">
               Hi {user.firstName} {user.lastName}{" "}
             </p>
-            <div className="user-menu">
+            <div className={`user-menu ${isSticky ? "sticky" : ""}`}>
               <Link to="/profile">Profile</Link>
               <Link to="/">Orders</Link>
             </div>

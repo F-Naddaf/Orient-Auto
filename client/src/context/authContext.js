@@ -12,11 +12,12 @@ export const AuthProvider = ({ children }) => {
   });
 
   const { data } = useQuery(USER_INFO, {
-    headers: {
-      Authorization: `Bearer ${token}`,
+    context: {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
   });
-  console.log("user context", data);
 
   useEffect(() => {
     if (token) {
