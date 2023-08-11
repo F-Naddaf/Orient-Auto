@@ -67,7 +67,7 @@ const NavBar = () => {
             </p>
             <div className={`user-menu ${isSticky ? "sticky" : ""}`}>
               <Link to="/profile">Profile</Link>
-              <Link to="/">Orders</Link>
+              <Link to="/orders">Orders</Link>
             </div>
           </div>
           <Link className="register-btn" to="/" onClick={logout}>

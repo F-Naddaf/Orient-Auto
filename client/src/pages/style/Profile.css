@@ -33,7 +33,7 @@
 .profile-container .profile-section .header h3 {
   font-size: 28px;
   font-weight: 800;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 2px;
   color: var(--primary-color-dark);
   word-spacing: 8px;

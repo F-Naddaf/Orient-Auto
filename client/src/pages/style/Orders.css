@@ -1,0 +1,42 @@
+.order-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .order-container .spinner {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 120px auto;
+  }
+
+  .order-container .order-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 120px;
+  }
+  
+  .order-container .order-section .header {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    align-items: center;
+    margin: 120px 0 75px 0;
+  }
+  
+  .order-container .order-section .header h3 {
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    color: var(--primary-color-dark);
+    word-spacing: 8px;
+    margin: 0;
+  }
+  
