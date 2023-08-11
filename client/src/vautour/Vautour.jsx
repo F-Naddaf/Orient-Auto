@@ -5,6 +5,7 @@ import { useMutation } from "@apollo/client";
 import { AuthContext } from "../context/authContext";
 import { ADD_VAUTOUR } from "../mutations/addVautour.js";
 import { VEHICLE_BY_ID } from "../queries/vehicleById";
+import VautourForm from "../components/forms/VautourFrom";
 import "./Vautour.css";
 
 const Vautour = ({
@@ -15,14 +16,16 @@ const Vautour = ({
   selectedPickDate,
   selectedDropDate,
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(AuthContext);
+  const vautourRef = useRef();
+  const token = localStorage.getItem("accessToken");
+
+  const [isLoading, setIsLoading] = useState(true);
   const [car, setCar] = useState(null);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState("");
-  const token = localStorage.getItem("accessToken");
-  const vautourRef = useRef();
+
   const [reservationData, setReservationData] = useState({
     pickUpLocation: selectedPickUpLocation,
     dropOfLocation: selectedDropOfLocation,
@@ -57,8 +60,6 @@ const Vautour = ({
       if (name.startsWith("user.")) {
         const userField = name.substring(5);
         newData.user[userField] = value;
-      } else if (name === "pickUpTime" || name === "dropOfTime") {
-        newData[name] = value;
       } else {
         newData[name] = value;
       }
@@ -68,8 +69,6 @@ const Vautour = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const emptyFields = [];
 
     const requiredFields = [
       "pickUpTime",
@@ -84,32 +83,33 @@ const Vautour = ({
       "user.zipCode",
     ];
 
-    requiredFields.forEach((field) => {
-      const value = field
-        .split(".")
-        .reduce((obj, key) => obj && obj[key], reservationData);
-
-      if (!value || (typeof value === "string" && !value.trim())) {
-        emptyFields.push(field);
+    const emptyFields = requiredFields.filter((field) => {
+      const fieldKeys = field.split(".");
+      let fieldValue = reservationData;
+      for (const key of fieldKeys) {
+        if (fieldValue.hasOwnProperty(key)) {
+          fieldValue = fieldValue[key];
+        } else {
+          fieldValue = null;
+          break;
+        }
       }
+      return (
+        !fieldValue || (typeof fieldValue === "string" && !fieldValue.trim())
+      );
     });
 
     if (emptyFields.length > 0) {
-      const emptyFieldNames = emptyFields.join(", ");
       setError(true);
-      setMessage(`Please fill up the required fields: ${emptyFieldNames}`);
+      setMessage(
+        `Please fill up the required fields: ${emptyFields.join(", ")}`
+      );
       return;
     }
 
     const mutationVariables = {
-      firstName: reservationData.user.firstName,
-      lastName: reservationData.user.lastName,
-      phone: reservationData.user.phone,
+      ...reservationData.user,
       age: parseInt(reservationData.user.age),
-      email: reservationData.user.email,
-      address: reservationData.user.address,
-      city: reservationData.user.city,
-      zipCode: reservationData.user.zipCode,
       pickUpLocation: reservationData.pickUpLocation,
       dropOfLocation: reservationData.dropOfLocation,
       pickUpdate: reservationData.pickUpdate,
@@ -265,134 +265,15 @@ const Vautour = ({
           </section>
           <div className="line"></div>
           <section>
-            <form>
-              <h5>personal information</h5>
-              <div className="vautour-user-info">
-                <label>
-                  First Name <span>*</span>
-                  <input
-                    type="text"
-                    name="user.firstName"
-                    placeholder="Enter your first name"
-                    value={reservationData.user.firstName}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p>This field is required.</p>
-                </label>
-                <label>
-                  Last Name <span>*</span>
-                  <input
-                    type="text"
-                    name="user.lastName"
-                    placeholder="Enter your last name"
-                    value={reservationData.user.lastName}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p>This field is required.</p>
-                </label>
-              </div>
-              <div className="vautour-user-info">
-                <label>
-                  Phone Number <span>*</span>
-                  <input
-                    type="tel"
-                    name="user.phone"
-                    placeholder="Example: 0612345678"
-                    value={reservationData.user.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p>This field is required.</p>
-                </label>
-                <label>
-                  Age <span>*</span>
-                  <input
-                    type="number"
-                    name="user.age"
-                    placeholder="18"
-                    value={reservationData.user.age}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p>This field is required.</p>
-                </label>
-              </div>
-              <div className="vautour-user-info">
-                <label>
-                  Email <span>*</span>
-                  <input
-                    type="email"
-                    name="user.email"
-                    placeholder="email@example.com"
-                    value={reservationData.user.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p>This field is required.</p>
-                </label>
-                <label>
-                  Address <span>*</span>
-                  <input
-                    type="text"
-                    name="user.address"
-                    placeholder="Enter your street address"
-                    value={reservationData.user.address}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p>This field is required.</p>
-                </label>
-              </div>
-              <div className="vautour-user-info">
-                <label>
-                  City <span>*</span>
-                  <input
-                    type="text"
-                    name="user.city"
-                    placeholder="Enter your city name"
-                    value={reservationData.user.city}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p>This field is required.</p>
-                </label>
-                <label>
-                  Zip Code <span>*</span>
-                  <input
-                    type="text"
-                    name="user.zipCode"
-                    placeholder="Enter your zip code"
-                    value={reservationData.user.zipCode}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p>This field is required.</p>
-                </label>
-              </div>
-              <div className="checkbox-wrapper">
-                <label>
-                  <input type="checkbox" />
-                  Please send me latest news and updates
-                </label>
-              </div>
-              {error && (
-                <div className="error-message">
-                  <p>{message}</p>
-                </div>
-              )}
-              {success && (
-                <div className="success-message">
-                  <p>{message}</p>
-                </div>
-              )}
-              <div className="form-reserve-btn">
-                <button onClick={handleSubmit} className="btn-reserve">
-                  Reserve Now
-                </button>
-              </div>
-            </form>
+            <VautourForm
+              title="personal information"
+              formData={reservationData.user}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              error={error}
+              success={success}
+              message={message}
+            />
           </section>
         </div>
       )}

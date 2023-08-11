@@ -40,8 +40,7 @@ const Login = () => {
         data.loginUser.user &&
         data.loginUser.token
       ) {
-        const { token, user } = data.loginUser;
-        console.log("login user data:", user);
+        const { token } = data.loginUser;
 
         localStorage.setItem("accessToken", token);
         setUser(data.loginUser.user);
