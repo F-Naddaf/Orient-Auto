@@ -113,12 +113,6 @@ const ReservationType = new GraphQLObjectType({
     dropOfdate: { type: GraphQLString },
     pickUpTime: { type: GraphQLString },
     dropOfTime: { type: GraphQLString },
-    // carId: {
-    //   type: CarType,
-    //   resolve(parent, args) {
-    //     return Car.findById(parent.carId);
-    //   },
-    // },
     carId: { type: GraphQLID },
     userId: { type: GraphQLID },
     token: { type: GraphQLString },
