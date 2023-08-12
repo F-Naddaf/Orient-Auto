@@ -126,3 +126,51 @@ input {
 .contact-container .contact-wrapper aside form button i {
   padding: 0 10px;
 }
+
+@media (max-width: 768px) {
+  .contact-container .banner-wrapper {
+    width: 100%;
+    height: 300px;
+  }
+  .contact-container .banner-wrapper img {
+    top: -80px;
+  }
+  .contact-container .banner-wrapper h2 {
+    margin-left: 40px;
+    margin-bottom: 60px;
+  }
+  .contact-container .contact-wrapper {
+    width: 90%;
+    margin: 60px;
+  }
+  .contact-container .contact-wrapper .more-info {
+    width: 35%;
+  }
+  .contact-container .contact-wrapper aside {
+    width: 55%;
+  }
+}
+
+@media (max-width: 425px) {
+  .contact-container .banner-wrapper {
+    width: 100%;
+    height: 240px;
+  }
+  .contact-container .banner-wrapper img {
+    top: 0px;
+  }
+  .contact-container .banner-wrapper h2 {
+    margin-left: 20px;
+    margin-bottom: 40px;
+  }
+  .contact-container .contact-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-container .contact-wrapper .more-info {
+    width: 90%;
+  }
+  .contact-container .contact-wrapper aside {
+    width: 90%;
+  }
+}
