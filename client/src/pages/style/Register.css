@@ -59,3 +59,34 @@
   padding: 5px 10px;
   color: white;
 }
+
+@media (max-width: 1024px) {
+  .register-container section .register-card {
+    padding: 25px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-container section .register-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .register-container section .register-card {
+    padding: 20px 0;
+  }
+  .register-container .orange {
+    width: 20%;
+  }
+  .register-container .blue {
+    width: 80%;
+  }
+}
+
+@media (max-width: 425px) {
+  .register-container .orange {
+    width: 15%;
+  }
+  .register-container .blue {
+    width: 85%;
+  }
+}
