@@ -119,6 +119,34 @@ const ReservationType = new GraphQLObjectType({
   }),
 });
 
+const UserOrderType = new GraphQLObjectType({
+  name: "UserOrder",
+  fields: () => ({
+    id: { type: GraphQLID },
+    firstName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    phone: { type: GraphQLString },
+    email: { type: GraphQLString },
+    age: { type: GraphQLInt },
+    address: { type: GraphQLString },
+    city: { type: GraphQLString },
+    zipCode: { type: GraphQLString },
+    pickUpLocation: { type: GraphQLString },
+    dropOfLocation: { type: GraphQLString },
+    pickUpdate: { type: GraphQLString },
+    dropOfdate: { type: GraphQLString },
+    pickUpTime: { type: GraphQLString },
+    dropOfTime: { type: GraphQLString },
+    carId: {
+      type: CarType,
+      resolve(parent, args) {
+        return Car.findById(parent.carId);
+      },
+    },
+    userId: { type: GraphQLID },
+  }),
+});
+
 const UserType = new GraphQLObjectType({
   name: "User",
   fields: () => ({
@@ -201,6 +229,15 @@ const RootQuery = new GraphQLObjectType({
           return user;
         }
         throw new Error("Token not provided");
+      },
+    },
+    userReservations: {
+      type: new GraphQLList(UserOrderType),
+      args: {
+        userId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return Reservation.find({ userId: args.userId });
       },
     },
   },
