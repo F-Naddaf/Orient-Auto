@@ -127,3 +127,31 @@
   background-color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
 }
+
+@media (max-width: 768px) {
+  .nav-container {
+    height: 60px;
+  }
+  .nav-container .logo {
+    margin-left: 20px;
+    height: 30px;
+  }
+  .nav-container .list li a {
+    color: #e7e7e7;
+    padding: 0 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .nav-container .button-wrapper {
+    margin-right: 20px;
+  }
+  .nav-container .button-wrapper a {
+    width: 70px;
+  }
+  .nav-container .button-wrapper .login-btn {
+    font-size: 14px;
+  }
+  .nav-container .button-wrapper .register-btn {
+    font-size: 14px;
+  }
+}
