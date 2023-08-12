@@ -137,3 +137,80 @@
   width: 30%;
   cursor: pointer;
 }
+
+@media (max-width: 1024px) {
+  .login-container .image-wrapper {
+    justify-content: flex-start;
+    width: 45%;
+  }
+  .login-container .form-wrapper {
+    width: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container .form-wrapper {
+    width: 55%;
+  }
+  .login-container .form-wrapper h2 {
+    font-size: 20px;
+  }
+  .login-card .form-wrapper label input {
+    margin-top: 4px;
+    font-size: 12px;
+    padding: 4px;
+  }
+  .login-card form .form-login-btn .btn-login {
+    font-size: 16px;
+    padding: 8px 20px;
+    width: 30%;
+  }
+  .login-card form .form-login-btn .btn-back {
+    font-size: 16px;
+    padding: 8px 20px;
+    width: 30%;
+  }
+}
+
+@media (max-width: 425px) {
+  .login-container .orange {
+    width: 20%;
+  }
+  .login-container .black {
+    width: 80%;
+  }
+  .login-container .image-wrapper {
+    width: 65%;
+  }
+  .login-container section .login-card {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 50px 0;
+  }
+  .login-container .form-wrapper {
+    width: 100%;
+  }
+  .login-container .form-wrapper form {
+    width: 75%;
+  }
+  .login-container .form-wrapper h2 {
+    font-size: 18px;
+    margin: 20px 0;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+  }
+  .login-card .form-wrapper label {
+    font-size: 12px;
+  }
+  .login-card form .form-login-btn .btn-login {
+    font-size: 14px;
+    padding: 8px 20px;
+    width: 30%;
+  }
+  .login-card form .form-login-btn .btn-back {
+    font-size: 14px;
+    padding: 8px 20px;
+    width: 30%;
+  }
+}
