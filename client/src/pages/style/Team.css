@@ -111,17 +111,6 @@
 }
 
 @media (max-width: 768px) {
-  .team-container .banner-wrapper {
-    width: 100%;
-    height: 300px;
-  }
-  .team-container .banner-wrapper img {
-    top: -80px;
-  }
-  .team-container .banner-wrapper h2 {
-    margin-left: 40px;
-    margin-bottom: 60px;
-  }
   .team-container .team-wrapper {
     grid-template-columns: repeat(2, 1fr);
     width: 90%;
@@ -129,17 +118,6 @@
 }
 
 @media (max-width: 425px) {
-  .team-container .banner-wrapper {
-    width: 100%;
-    height: 240px;
-  }
-  .team-container .banner-wrapper img {
-    top: 0px;
-  }
-  .team-container .banner-wrapper h2 {
-    margin-left: 20px;
-    margin-bottom: 40px;
-  }
   .team-container .team-section .header {
     width: 80%;
     margin: 80px 0;
