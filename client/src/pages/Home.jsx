@@ -17,7 +17,7 @@ const Home = () => {
       <VehicleModel />
       <WhyUs />
       <FAQ />
-      {/* <Download /> */}
+      <Download />
     </>
   );
 };
