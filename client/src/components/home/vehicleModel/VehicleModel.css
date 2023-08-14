@@ -201,3 +201,90 @@
   padding: 10px 20px;
   border-radius: 10px;
 }
+
+@media (max-width: 768px) {
+  .vehicle-header {
+    width: 75%;
+  }
+  .vehicle-container .vehicle-section {
+    display: grid;
+    gap: 60px 20px;
+    grid-template-columns: repeat(8, 2fr);
+    width: 100%;
+  }
+  .vehicle-container .vehicle-section .vehicle-name {
+    grid-column: span 3;
+  }
+  .vehicle-section .vehicle-image {
+    grid-column: span 5;
+  }
+  .vehicle-container .vehicle-section .vehicle-details {
+    grid-column: 2 / span 6;
+  }
+  .vehicle-section .vehicle-image .image-container img {
+    width: 100%;
+  }
+  .vehicle-section .vehicle-name .small-car-mark {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 0;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.4s ease-in-out;
+    justify-content: space-between;
+  }
+  .vehicle-section .vehicle-name .small-car-mark.show {
+    height: fit-content;
+    transition: 0.4s ease-in-out;
+  }
+  .vehicle-name .small-car-mark li {
+    color: white;
+    padding: 5px 0;
+    margin: 5px 0;
+    background-color: rgba(0, 37, 58, 0.6);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  .small-car-model .car-title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .vehicle-section .vehicle-name .small-car-model {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: rgba(0, 37, 58, 0.6);
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+  }
+  .vehicle-section .vehicle-name .small-car-model.active {
+    background-color: var(--secondary-color);
+  }
+  .vehicle-section .vehicle-name .small-car-model.active .car-mark {
+    display: flex;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 425px) {
+  .vehicle-container .vehicle-section {
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(1, 1fr);
+    width: 90%;
+  }
+  .vehicle-container .vehicle-section .vehicle-name {
+    grid-column: span 1;
+  }
+  .vehicle-section .vehicle-image {
+    grid-column: span 1;
+  }
+  .vehicle-container .vehicle-section .vehicle-details {
+    grid-column: span 1;
+  }
+}

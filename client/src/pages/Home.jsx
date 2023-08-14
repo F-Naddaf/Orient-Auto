@@ -17,9 +17,9 @@ const Home = () => {
       <Plan />
       <VehicleModel />
       <WhyUs />
-      <FAQ />
+      {/* <FAQ />
       <Download />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 };
