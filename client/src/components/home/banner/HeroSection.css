@@ -103,3 +103,65 @@
 .slogan-container .learn-btn:hover {
   background-color: var(--primary-color);
 }
+
+@media (max-width: 768px) {
+  .slogan-container {
+    top: 25%;
+    left: 50px;
+    width: 50%;
+  }
+  .slogan-title {
+    font-size: 16px;
+  }
+  .slogan-description {
+    margin: 20px 0;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 425px) {
+  .slogan-container {
+    top: 30%;
+    left: 20px;
+    width: 90%;
+    height: 60%;
+    justify-content: space-between;
+  }
+  .slogan-title {
+    display: none;
+  }
+  .slogan-container .slogan {
+    font-size: 20px;
+    word-spacing: 0.1rem;
+    width: 60%;
+  }
+  .slogan-description {
+    display: none;
+  }
+  .hero-container .btn-wrapper {
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .slogan-container .book-btn {
+    border-radius: 6px;
+    width: 100px;
+    height: 35px;
+    padding: 0px;
+    margin-right: 20px;
+  }
+  .slogan-container .book-btn p {
+    font-size: 14px;
+    padding: 0px 2px;
+  }
+  .slogan-container .learn-btn {
+    border-radius: 6px;
+    width: 100px;
+    height: 35px;
+    padding: 0px;
+    margin: 0;
+  }
+  .slogan-container .learn-btn p {
+    font-size: 14px;
+    padding: 0px 2px;
+  }
+}
