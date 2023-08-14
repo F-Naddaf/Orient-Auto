@@ -107,3 +107,38 @@
   color: white;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .booking-conatiner {
+    width: 90%;
+  }
+  .booking-selector {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 425px) {
+  .booking-conatiner {
+    padding: 20px;
+  }
+  .booking-selector {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .booking-selector .car-form-label i {
+    padding-right: 6px;
+  }
+  .booking-selector .car-form-label p {
+    font-size: 12px;
+  }
+  .booking-selector .car-form-label p span {
+    padding-left: 3px;
+  }
+  .booking-selector .select-conatiner select option {
+    padding: 0 !important;
+  }
+  .booking-selector .select-conatiner select {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+}

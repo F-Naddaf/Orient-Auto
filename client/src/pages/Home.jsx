@@ -13,8 +13,8 @@ const Home = () => {
   return (
     <div className="hero-section">
       <HeroSectio />
-      {/* <Booking />
-      <Plan />
+      <Booking />
+      {/* <Plan />
       <VehicleModel />
       <WhyUs />
       <FAQ />

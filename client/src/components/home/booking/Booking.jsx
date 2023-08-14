@@ -99,7 +99,7 @@ const Booking = () => {
             <label className="car-form-label">
               <i className="fa-solid fa-car"></i>
               <p>
-                Select Your Car Type <span>*</span>
+                Select Your Car <span>*</span>
               </p>
             </label>
             <section className="select-conatiner">
