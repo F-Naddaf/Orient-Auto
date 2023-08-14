@@ -8,11 +8,36 @@ const VehicleModel = () => {
   const [selectedCar, setSelectedCar] = useState(null);
   const [desplayedCar, setDesplayedCar] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isLaptop, setIsLaptop] = useState(true);
+  const [currentCar, setCurrentCar] = useState(null);
 
   const { data } = useQuery(GET_VEHICLE);
 
   const handleCarMarkClick = (car) => {
     setSelectedCar(car);
+  };
+
+  const checkIsNotLaptop = () => {
+    if (window.innerWidth < 1024) {
+      setIsLaptop(false);
+    } else {
+      setIsLaptop(true);
+    }
+  };
+
+  useEffect(() => {
+    checkIsNotLaptop();
+    const handleResize = () => {
+      checkIsNotLaptop();
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleToggleCar = (model) => {
+    setCurrentCar(currentCar === model ? null : model);
   };
 
   useEffect(() => {
@@ -38,7 +63,7 @@ const VehicleModel = () => {
       <section className="vehicle-section">
         {isLoading ? (
           <p>Loading...</p>
-        ) : (
+        ) : isLaptop ? (
           <article className="vehicle-name">
             <ul className="vehicle-list">
               {categories?.map((category, index) => (
@@ -59,6 +84,47 @@ const VehicleModel = () => {
                       </ul>
                     </ul>
                   </div>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ) : (
+          <article className="vehicle-name">
+            <ul className="vehicle-list">
+              {categories?.map((category, index) => (
+                <li
+                  className={`small-car-model ${
+                    currentCar === category.name ? "active" : ""
+                  }`}
+                  key={index}
+                  onClick={() => handleToggleCar(category.name)}
+                >
+                  <div className="car-title">
+                    <p>{category.name}</p>
+                    <i
+                      className={`fa-solid ${
+                        currentCar === category.name
+                          ? "fa-chevron-up"
+                          : "fa-chevron-down"
+                      }`}
+                    ></i>
+                  </div>
+                  <ul
+                    className={`small-car-mark ${
+                      currentCar === category.name ? "show" : ""
+                    }`}
+                  >
+                    {category.cars.map((car) =>
+                      currentCar === car.model ? (
+                        <li
+                          key={car.id}
+                          onClick={() => handleCarMarkClick(car)}
+                        >
+                          {car.mark}
+                        </li>
+                      ) : null
+                    )}
+                  </ul>
                 </li>
               ))}
             </ul>
