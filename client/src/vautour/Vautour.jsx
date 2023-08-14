@@ -204,7 +204,7 @@ const Vautour = ({
           </section>
           <section className="reservation-details">
             <aside>
-              <div>
+              <div className="location-wrapper">
                 <h5>Location & Date</h5>
               </div>
               <div className="reserve-info">
