@@ -126,3 +126,29 @@ input {
 .contact-container .contact-wrapper aside form button i {
   padding: 0 10px;
 }
+
+@media (max-width: 768px) {
+  .contact-container .contact-wrapper {
+    width: 90%;
+    margin: 60px;
+  }
+  .contact-container .contact-wrapper .more-info {
+    width: 35%;
+  }
+  .contact-container .contact-wrapper aside {
+    width: 55%;
+  }
+}
+
+@media (max-width: 425px) {
+  .contact-container .contact-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-container .contact-wrapper .more-info {
+    width: 90%;
+  }
+  .contact-container .contact-wrapper aside {
+    width: 90%;
+  }
+}

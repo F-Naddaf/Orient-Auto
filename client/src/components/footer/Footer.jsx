@@ -11,13 +11,15 @@ const Footer = () => {
           We offers a big range of vehicles for all your driving needs. We have
           the perfect car to meet your needs.
         </p>
-        <div className="info">
-          <i className="fa-solid fa-phone"></i>
-          <p>(+31) 684744280</p>
-        </div>
-        <div className="info">
-          <i className="fa-solid fa-envelope"></i>
-          <p>fady-naddaf@hotmail.com</p>
+        <div className="my-contact-container">
+          <div className="info">
+            <i className="fa-solid fa-phone"></i>
+            <p>(+31) 684744280</p>
+          </div>
+          <div className="info">
+            <i className="fa-solid fa-envelope"></i>
+            <p>fady-naddaf@hotmail.com</p>
+          </div>
         </div>
       </aside>
       <aside className="space-company">

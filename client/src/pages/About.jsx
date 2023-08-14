@@ -1,14 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Banner from "../components/banner/Banner";
 import "./style/About.css";
 
 const About = () => {
   return (
     <div className="about-container">
-      <div className="banner-wrapper">
-        <img src="../images/about/about-banner.png" alt="banner" />
-        <h2>About Us</h2>
-      </div>
+      <Banner title="About Us" />
       <div className="about-company">
         <img src="../images/about/office.png" alt="banner" />
         <section>
@@ -16,21 +14,24 @@ const About = () => {
             WELCOME <span>TO ORIENT AUTO</span>
           </h2>
           <span className="line"></span>
-          <h5>
-            Orient auto started offering Short Rent contracts more than ten
-            years ago.
-          </h5>
-          <p>
-            We offer both <strong>business</strong> and <strong>private</strong>{" "}
-            motorists a wide short-lease range of cars and options. With a
-            combination of flexibility, versatility, service and{" "}
-            <strong>competitive rates</strong> , we have already been able to
-            serve many customers, often regular customers that we look forward
-            to seeing again and again.
-          </p>
+          <div>
+            <h5>
+              Orient auto started offering Short Rent contracts more than ten
+              years ago.
+            </h5>
+            <p>
+              We offer both <strong>business</strong> and{" "}
+              <strong>private</strong> motorists a wide short-lease range of
+              cars and options. With a combination of flexibility, versatility,
+              service and <strong>competitive rates</strong> , we have already
+              been able to serve many customers, often regular customers that we
+              look forward to seeing again and again.
+            </p>
+          </div>
         </section>
       </div>
       <div className="about-company">
+        <img src="../images/about/communication.png" alt="banner" />
         <section>
           <h2>FOCUSED ON COMMUNICATION</h2>
           <span className="line"></span>
@@ -49,7 +50,6 @@ const About = () => {
             <Link to="/">fady-naddaf@hotmail.com</Link>
           </div>
         </section>
-        <img src="../images/about/communication.png" alt="banner" />
       </div>
       <div className="about-company">
         <img src="../images/about/offer.png" alt="banner" />
@@ -68,6 +68,7 @@ const About = () => {
         </section>
       </div>
       <div className="about-company">
+        <img src="../images/about/service.png" alt="banner" />
         <section>
           <h2>FULL OPERATIONAL SHORT RENT</h2>
           <span className="line"></span>
@@ -86,7 +87,6 @@ const About = () => {
           </div>
           <button>request a quote without obligation</button>
         </section>
-        <img src="../images/about/service.png" alt="banner" />
       </div>
     </div>
   );

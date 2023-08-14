@@ -56,3 +56,9 @@
   color: var(--secondary-color-dark);
   margin-bottom: 2px;
 }
+
+@media (max-width: 1024px) {
+  .order-container .card-container {
+    width: 80%;
+  }
+}

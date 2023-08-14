@@ -96,3 +96,46 @@
 .team-container .team-section .partners img {
   width: 70%;
 }
+
+@media (max-width: 1024px) {
+  .team-container .team-section .header {
+    margin: 80px 0;
+  }
+  .team-container .team-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+  }
+  .team-section .team-wrapper .team-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-container .team-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+  }
+}
+
+@media (max-width: 425px) {
+  .team-container .team-section .header {
+    width: 80%;
+    margin: 80px 0;
+  }
+  .team-container .team-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+    width: 80%;
+  }
+  .team-container .team-wrapper .more-info {
+    width: 90%;
+  }
+  .team-container .team-wrapper aside {
+    width: 90%;
+  }
+  .team-container .team-section .partners {
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+    gap: 30px;
+    justify-items: center;
+  }
+}

@@ -77,5 +77,21 @@
 }
 
 .profile-wrapper .edit-profile .fa-pen {
-    padding-right: 10px;
+  padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .profile-container .profile-section .header {
+    width: 70%;
+  }
+}
+
+@media (max-width: 425px) {
+  .profile-container .profile-section .header {
+    width: 100%;
+  }
+  .profile-wrapper .edit-profile {
+    bottom: -40px;
+    right: 70px;
+  }
 }
