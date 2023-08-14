@@ -14,8 +14,8 @@ const Home = () => {
     <div className="hero-section">
       <HeroSectio />
       <Booking />
-      {/* <Plan />
-      <VehicleModel />
+      <Plan />
+      {/* <VehicleModel />
       <WhyUs />
       <FAQ />
       <Download />

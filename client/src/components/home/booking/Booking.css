@@ -119,10 +119,10 @@
 
 @media (min-width: 375px) and (max-width: 425px) {
   .booking-conatiner {
-    padding: 20px;
+    padding: 30px;
   }
   .booking-selector {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 20px;
   }
   .booking-selector .car-form-label i {
