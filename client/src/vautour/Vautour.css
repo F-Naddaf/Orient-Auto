@@ -167,3 +167,49 @@
   background-color: rgb(177, 177, 177);
   margin: auto;
 }
+
+@media (max-width: 768px) {
+  .vautour-wrapper {
+    width: 90%;
+  }
+}
+@media (min-width: 375px) and (max-width: 425px) {
+  .vautour-wrapper header h2 {
+    font-size: 18px;
+  }
+  .vautour-cantainer .vautour-wrapper .about-reservation div {
+    align-items: flex-start;
+  }
+  .vautour-wrapper .about-reservation div:first-child h3 {
+    font-size: 16px;
+  }
+  .vautour-wrapper .about-reservation div p {
+    font-weight: 400;
+  }
+  .vautour-wrapper .reservation-details {
+    flex-direction: column-reverse;
+  }
+  .vautour-wrapper .reservation-details aside {
+    width: 95%;
+    margin: auto;
+  }
+  .vautour-wrapper .reservation-details .vehicle-type-wrapper div {
+    justify-content: center;
+  }
+  .vautour-wrapper .reservation-details aside .location-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  .vautour-wrapper section form .vautour-user-info {
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+    justify-items: center;
+  }
+  .vautour-wrapper section form .form-reserve-btn {
+    width: 100%;
+    padding: 20px;
+  }
+  .vautour-wrapper section form .form-reserve-btn .btn-reserve {
+    width: 100%;
+  }
+}

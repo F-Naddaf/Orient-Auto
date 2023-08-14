@@ -23,6 +23,9 @@ const Download = () => {
           </Link>
         </div>
       </div>
+      <div className="image-container">
+        <img className="image" src="../images/download-1.png" alt="download" />
+      </div>
     </div>
   );
 };

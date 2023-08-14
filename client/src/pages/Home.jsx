@@ -7,20 +7,18 @@ import WhyUs from "../components/home/whyUs/WhyUs";
 import FAQ from "../components/home/faq/FAQ";
 import Footer from "../components/footer/Footer";
 import Download from "../components/home/download/Download";
-import "./style/Home.css";
 
 const Home = () => {
   return (
-    <div className="hero-section">
+    <>
       <HeroSectio />
       <Booking />
       <Plan />
       <VehicleModel />
       <WhyUs />
-      {/* <FAQ />
+      <FAQ />
       <Download />
-      <Footer /> */}
-    </div>
+    </>
   );
 };
 
