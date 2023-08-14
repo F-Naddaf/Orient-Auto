@@ -110,3 +110,46 @@
   font-weight: 300;
   margin: 14px 0;
 }
+
+@media (max-width: 768px) {
+  .why-us-container .description {
+    flex-direction: column;
+  }
+  .why-us-container .description aside {
+    width: 100%;
+    margin-bottom: 80px;
+  }
+  .why-us-container .description h2 {
+    font-size: 36px;
+  }
+  .why-us-container .description .aside-left p {
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+  .why-us-container .description .aside-right {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 40px;
+  }
+  .why-us-container .description .aside-right img {
+    width: 100px;
+    padding-right: 10px;
+  }
+  .why-us-container .description .aside-right h3 {
+    margin: 0 0 24px 0;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 425px) {
+  .why-us-container .header h2 {
+    font-size: 24px;
+  }
+  .why-us-container .description {
+    margin-top: 40px;
+  }
+  .why-us-container .description .aside-right {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+}

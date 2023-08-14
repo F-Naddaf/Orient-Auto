@@ -16,8 +16,8 @@ const Home = () => {
       <Booking />
       <Plan />
       <VehicleModel />
-      {/* <WhyUs />
-      <FAQ />
+      <WhyUs />
+      {/* <FAQ />
       <Download />
       <Footer /> */}
     </div>
