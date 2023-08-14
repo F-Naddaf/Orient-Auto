@@ -9,9 +9,8 @@
   flex-direction: column;
   align-items: center;
   width: 90%;
-  margin: auto;
   padding: 60px 0;
-  margin-bottom: 40px;
+  margin: 0 auto 40px auto;
 }
 
 .FAQ-header {
@@ -115,4 +114,26 @@
   padding: 20px 30px;
   text-align: justify;
   margin: 14px;
+}
+
+@media (max-width: 1024px) {
+  .FAQ-wrapper {
+    padding: 0 0 40px 0;
+  }
+}
+@media (max-width: 768px) {
+  .FAQ-header {
+    width: 75%;
+    margin-bottom: 40px;
+  }
+  .FAQ-wrapper .questions-section {
+    width: 80%;
+  }
+}
+@media (min-width: 375px) and (max-width: 425px) {
+  .FAQ-wrapper .questions-section article .question h3 {
+    padding: 0 10px;
+    margin: 10px;
+    font-size: 14px;
+  }
 }
