@@ -19,7 +19,7 @@ const {
 
 async function authenticateToken(token) {
   try {
-    const decodedToken = jwt.verify(token, "Ninja-cool@12_666");
+    const decodedToken = jwt.verify(token, process.env.TOKEN);
     const userId = decodedToken.userId;
     const user = await User.findById(userId);
     return user;
@@ -331,7 +331,7 @@ const Mutation = new GraphQLObjectType({
           throw new Error("Invalid email or password!");
         }
 
-        const token = jwt.sign({ userId: user.id }, "Ninja-cool@12_666", {
+        const token = jwt.sign({ userId: user.id }, process.env.TOKEN, {
           expiresIn: "1h",
         });
 

@@ -17,8 +17,12 @@ const Orders = () => {
     variables: { userId: user ? user.id : null },
   });
 
+  /* Stringify the entire user object to track changes in user data within the useEffect.
+  Otherwise, I would need to monitor specific fields in the user object for changes. */
+  const userString = JSON.stringify(user);
+
   useEffect(() => {
-    if (!user) {
+    if (!userString) {
       setIsLoading(true);
       setReservations([]);
     } else {
@@ -27,7 +31,7 @@ const Orders = () => {
         setReservations(data.userReservations);
       }
     }
-  }, [user, data]);
+  }, [userString, data]);
 
   return (
     <div className="order-container">
