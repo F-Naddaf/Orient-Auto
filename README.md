@@ -43,7 +43,7 @@ The user can view the details of his reservation history if he was previously re
 
 ## 3. Link and Preview
 
-![App view](./client/public/img/Laptop-and-mobile.jpg)
+![App view](./client/public/images/ReadMe/Laptop-and-mobile.png)
 
 Project link is available at [Orient Auto App](https)
 
