@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { AuthContext } from "../context/authContext";
-import { ADD_VAUTOUR } from "../mutations/addVautour.js";
-import { VEHICLE_BY_ID } from "../queries/vehicleById";
-import VautourForm from "../components/forms/VautourFrom";
+import { AuthContext } from "../../context/authContext";
+import { ADD_VAUTOUR } from "../../mutations/addVautour";
+import { VEHICLE_BY_ID } from "../../queries/vehicleById";
+import VautourForm from "../forms/VautourFrom";
 import "./Vautour.css";
 
 const Vautour = ({
