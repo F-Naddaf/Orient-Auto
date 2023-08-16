@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { ALL_LOCATIONS } from "../../../queries/locationsQuery";
 import { VEHICLE_CATEGORIES } from "../../../queries/vehicleCategories";
-import Vautour from "../../../vautour/Vautour";
+import Vautour from "../../vautour/Vautour";
 import "./Booking.css";
 
 const Booking = () => {
