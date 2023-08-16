@@ -4,7 +4,8 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "setup": "npm install"
+    "setup": "npm install",
+    "start": "./src/app"
   },
   "keywords": [],
   "author": "",
