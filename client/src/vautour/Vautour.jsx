@@ -107,7 +107,6 @@ const Vautour = ({
       return;
     }
 
-    console.log(reservationData.carId);
     const mutationVariables = {
       ...reservationData.user,
       age: parseInt(reservationData.user.age),

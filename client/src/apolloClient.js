@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4880/graphql",
+  uri: `${process.env.URI}`,
 });
 
 const middleware = new ApolloLink((operation, forward) => {
