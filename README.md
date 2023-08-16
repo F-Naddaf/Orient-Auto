@@ -80,7 +80,7 @@ To set up the Orient Auto project, follow these steps:
 
 2. Run the command `npm install` at the main, client and server directories to install the necessary dependencies for both the server and client components.
 
-3. After the dependencies are installed, run `npm run start` at the client and server directories to run the application.
+3. After the dependencies are installed, run `npm start` at the client and server directories to run the application.
 
 <br>
 
