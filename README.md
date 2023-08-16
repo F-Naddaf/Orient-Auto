@@ -1,4 +1,4 @@
-<img src="./client/public/images/logo-text.png" alt="logo" width="200" />
+<img src="./client/public/images/ReadMe/logo.png" alt="logo" width="250" />
 
 <br>
 
