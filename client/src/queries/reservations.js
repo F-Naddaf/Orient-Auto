@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const RESERVATIONS = gql`
-  {
-    userReservations(userId: "64d631f37e9c26f865a3f813") {
+  query GetUserReservations($userId: ID) {
+    userReservations(userId: $userId) {
       id
       firstName
       lastName
