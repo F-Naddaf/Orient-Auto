@@ -1,0 +1,23 @@
+{
+  "name": "orient-auto",
+  "version": "1.0.0",
+  "description": "<img src=\"./client/public/images/ReadMe/logo.png\" alt=\"logo\" width=\"250\" />",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "setup": "npm run setup:client && npm run setup:server",
+    "setup:server": "cd server && npm run setup && cd ..",
+    "setup:client": "cd client && npm run setup && cd ..",
+    "dev:client": "cd client && npm run start && cd ..",
+    "dev:server": "cd server && npm run start && cd ..",
+    "build:server": "cd server && npm run start && cd ..",
+    "build:client": "cd client && npm run build && cd ..",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
