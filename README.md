@@ -78,9 +78,9 @@ To set up the CRAC project, follow these steps:
 
 1. Navigate to the main directory of the project.
 
-2. Run the command `npm install` to install the necessary dependencies for both the server and client components.
+2. Run the command `npm install` to install the necessary dependencies at the main root.
 
-3. After the dependencies are installed, run `npm run setup` to ensure all the required configurations are in place.
+3. After the dependencies are installed, run `npm run setup` to ensure all the required configurations are in place at both the server and client components.
 
 4. To run the application in development mode, use the command `npm run dev`. This will start the server and client components concurrently, allowing you to test and interact with the CRAC platform locally.
 
