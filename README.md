@@ -45,7 +45,7 @@ The user can view the details of his reservation history if he was previously re
 
 ![App view](./client/public/images/ReadMe/Laptop-and-mobile.png)
 
-Project link is available at [Orient Auto App](https://orient-auto-client.onrender.com/vehicles)
+Project link is available at [Orient Auto App](https://orient-auto-client.onrender.com/)
 
 <br>
 
