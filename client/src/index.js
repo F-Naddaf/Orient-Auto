@@ -7,7 +7,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 const client = new ApolloClient({
-  uri: "https://orient-auto-server.onrender.com",
+  uri: "https://orient-auto-server.onrender.com/graphql",
   // uri: `${process.env.URI}`,
   cache: new InMemoryCache(),
 });
