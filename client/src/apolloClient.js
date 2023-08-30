@@ -6,8 +6,7 @@ import {
 } from "@apollo/client";
 
 const httpLink = createHttpLink({
-  uri: "https://orient-auto-server.onrender.com/graphql",
-  // uri: `${process.env.URI}`,
+  uri: `${process.env.URI}`,
 });
 
 const middleware = new ApolloLink((operation, forward) => {
